@@ -29,7 +29,7 @@ public class AddClientForm extends javax.swing.JFrame {
         return true;
         }
         catch(NumberFormatException e){                                             //add catch code Don't forget!!
-            JOptionPane.showMessageDialog(this, "Age must be numeric");
+            
             return false;
     }
     }
@@ -163,7 +163,9 @@ public class AddClientForm extends javax.swing.JFrame {
        if(setAge()){
         this.setVisible(false);
         Gui1.getStartup().setVisible(true);}
-       
+       else{
+       JOptionPane.showMessageDialog(this, "Age must be numeric");
+       }
        
         try (FileOutputStream fs = new FileOutputStream("Clients.ser");
              ObjectOutputStream os = new ObjectOutputStream(fs)) {
