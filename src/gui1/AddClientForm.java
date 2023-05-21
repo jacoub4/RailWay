@@ -4,6 +4,7 @@ package gui1;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
+import javax.swing.JOptionPane;
 
 
 public class AddClientForm extends javax.swing.JFrame {
@@ -11,7 +12,6 @@ public class AddClientForm extends javax.swing.JFrame {
     
     public AddClientForm() {
         initComponents();
-        Error_Label.setVisible(false);
          Gui1.ClientsList.add(new Client());
          Current_Client = Gui1.ClientsList.get(Gui1.ClientsList.size()-1);
     }
@@ -29,7 +29,7 @@ public class AddClientForm extends javax.swing.JFrame {
         return true;
         }
         catch(NumberFormatException e){                                             //add catch code Don't forget!!
-            Error_Label.setVisible(true);
+            JOptionPane.showMessageDialog(this, "Age must be numeric");
             return false;
     }
     }
@@ -53,7 +53,6 @@ public class AddClientForm extends javax.swing.JFrame {
         AgeInput = new javax.swing.JTextField();
         AdressInput = new javax.swing.JTextField();
         Applybtn = new javax.swing.JButton();
-        Error_Label = new javax.swing.JLabel();
         adressLabel1 = new javax.swing.JLabel();
         PasswordInput = new javax.swing.JPasswordField();
 
@@ -86,10 +85,6 @@ public class AddClientForm extends javax.swing.JFrame {
             }
         });
 
-        Error_Label.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        Error_Label.setForeground(new java.awt.Color(255, 51, 51));
-        Error_Label.setText("Age must be numeric");
-
         adressLabel1.setFont(new java.awt.Font("sansserif", 0, 17)); // NOI18N
         adressLabel1.setText("Password");
 
@@ -120,11 +115,9 @@ public class AddClientForm extends javax.swing.JFrame {
                             .addComponent(PasswordInput))))
                 .addGap(0, 136, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(32, 32, 32)
-                .addComponent(Error_Label)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(Applybtn, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGap(28, 28, 28))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -147,11 +140,9 @@ public class AddClientForm extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(adressLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 39, Short.MAX_VALUE)
                     .addComponent(PasswordInput))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, 54, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Applybtn, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Error_Label, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
+                .addGap(3, 3, 3)
+                .addComponent(Applybtn, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -226,7 +217,6 @@ public class AddClientForm extends javax.swing.JFrame {
     private javax.swing.JTextField AdressInput;
     private javax.swing.JTextField AgeInput;
     private javax.swing.JButton Applybtn;
-    private javax.swing.JLabel Error_Label;
     private javax.swing.JTextField NameInput;
     private javax.swing.JPasswordField PasswordInput;
     private javax.swing.JLabel adressLabel;
