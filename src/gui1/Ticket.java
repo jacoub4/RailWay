@@ -9,9 +9,6 @@ import java.util.GregorianCalendar;
 
 
 public class Ticket {
-    
-    private String StartStation;
-    private String Distination;
     private double Discount;
     private int ID;
     private GregorianCalendar date;
@@ -21,28 +18,11 @@ public class Ticket {
     public Ticket() {
     }
 
-    public Ticket(String StartStation, String Distination, double Discount, int ID) {
-        this.StartStation = StartStation;
-        this.Distination = Distination;
+    public Ticket(double Discount, int ID,GregorianCalendar date) {
         this.Discount = Discount;
         this.ID = ID;
+        this.date=date;
         
-    }
-
-    public String getStartStation() {
-        return StartStation;
-    }
-
-    public void setStartStation(String StartStation) {
-        this.StartStation = StartStation;
-    }
-
-    public String getDistination() {
-        return Distination;
-    }
-
-    public void setDistination(String Distination) {
-        this.Distination = Distination;
     }
 
     public double getDiscount() {

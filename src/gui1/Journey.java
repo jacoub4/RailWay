@@ -6,21 +6,23 @@ import java.util.GregorianCalendar;
 
 
 public class Journey {
+    private String StartStation;
+    private String Distination;
    private  GregorianCalendar date;
     private double StartTime;
     private double Duration;
     private double Km_Covered;
-    private ArrayList<String> Stations;
-    
-    
     Journey(){}
-    Journey(GregorianCalendar date,double stime,double duration,double Km_Covered){
-    this.date=date; 
-    this.StartTime=stime;
-    this.Duration=duration;
-    this.Km_Covered=Km_Covered;
-    
+
+    public Journey(String StartStation, String Distination, GregorianCalendar date, double StartTime, double Duration, double Km_Covered) {
+        this.StartStation = StartStation;
+        this.Distination = Distination;
+        this.date = date;
+        this.StartTime = StartTime;
+        this.Duration = Duration;
+        this.Km_Covered = Km_Covered;
     }
+   
 
     public GregorianCalendar getDate() {
         return date;
@@ -54,18 +56,13 @@ public class Journey {
         this.Km_Covered = Km_Covered;
     }
 
-    public ArrayList<String> getStations() {
-        return Stations;
-    }
-
-    public void setStations(ArrayList<String> Stations) {
-        this.Stations = Stations;
-    }
+    
 
     @Override
     public String toString() {
-        return "Journey{" + "date=" + date + "\nStartTime=" + StartTime + "\n Duration=" + Duration + "\n Km_Covered=" + Km_Covered + '}';
+        return "Journey{" + "StartStation=" + StartStation + ", Distination=" + Distination + ", date=" + date + ", StartTime=" + StartTime + ", Duration=" + Duration + ", Km_Covered=" + Km_Covered + '}';
     }
+    
     
     
 }

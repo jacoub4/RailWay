@@ -2,11 +2,8 @@
 package gui1;
 
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
 
@@ -18,6 +15,7 @@ public class Gui1 {
     private static CurrentClientForm c1;
 public  static ArrayList<Client>ClientsList=new ArrayList<>();
 public static ArrayList<Journey>journeysList=new ArrayList<>();
+public static ArrayList<Train>TrainsList=new ArrayList<>();
    
 public static void setNewClientForm(){
    N1= new AddClientForm();
@@ -49,12 +47,18 @@ j1=new JourneysTableForm();
                 S1=new StartupForm();
                 
                 try(FileInputStream fs1= new FileInputStream("Clients.ser");
-                    ObjectInputStream os1=new ObjectInputStream(fs1))
-                    {
+                    ObjectInputStream os1=new ObjectInputStream(fs1)){
                     ClientsList =(ArrayList<Client>)os1.readObject();
                     fs1.close();
                     os1.close();
-                    System.out.println(ClientsList);}
+                    System.out.println(ClientsList);
+                    
+                    FileInputStream fs2=new FileInputStream("Trains.ser");
+                    ObjectInputStream os2=new ObjectInputStream(fs2);
+                    TrainsList=(ArrayList<Train>)os2.readObject();
+                    fs2.close();
+                    os2.close();
+                }
                    
                 
                 catch(IOException | ClassNotFoundException e){
