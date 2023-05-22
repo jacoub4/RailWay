@@ -161,13 +161,7 @@ public class AddClientForm extends javax.swing.JFrame {
        Current_Client.setID(Gui1.ClientsList.size());
        
        if(setAge()){
-        this.setVisible(false);
-        Gui1.getStartup().setVisible(true);}
-       else{
-       JOptionPane.showMessageDialog(this, "Age must be numeric");
-       }
-       
-        try (FileOutputStream fs = new FileOutputStream("Clients.ser");
+                   try (FileOutputStream fs = new FileOutputStream("Clients.ser");
              ObjectOutputStream os = new ObjectOutputStream(fs)) {
             os.writeObject(Gui1.ClientsList);
             os.close();
@@ -175,6 +169,13 @@ public class AddClientForm extends javax.swing.JFrame {
         } catch (IOException e) {
              System.out.println("Error44");                 
         }
+        this.setVisible(false);
+        Gui1.getStartup().setVisible(true);}
+       else{
+       JOptionPane.showMessageDialog(this, "Age must be numeric");
+       }
+       
+
     }//GEN-LAST:event_ApplybtnActionPerformed
 
     /**
