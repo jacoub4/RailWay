@@ -191,10 +191,10 @@ public class AddTrainForm extends javax.swing.JFrame {
     private void ApplyBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ApplyBtnActionPerformed
         //put servide attributes 
         train.setService(getServiceDetails());
-        //put Engine Type
+        //put Engine Details
         engine.setType(String.valueOf(EngineComboBox.getSelectedItem()));
-        engine.setDist_traveled(0);
         engine.setID(Gui1.TrainsList.size()+1);
+        //
         train.setEngine(engine);
         if(WifiCheck.isSelected()&&ScreenCheck.isSelected()){
             train.setTrainType("High Class");
@@ -212,14 +212,14 @@ public class AddTrainForm extends javax.swing.JFrame {
         Gui1.TrainsList.add(train);
         System.out.println(Gui1.TrainsList);
         //serializing the Data
-        System.out.println("I am here");
-        try (FileOutputStream fs1 = new FileOutputStream("Trains.ser");
-             ObjectOutputStream os1 = new ObjectOutputStream(fs1)) {
-            os1.writeObject(Gui1.TrainsList);
-            os1.close();
-            fs1.close();
+
+        try (FileOutputStream fs = new FileOutputStream("Trains.ser");
+             ObjectOutputStream os = new ObjectOutputStream(fs)){
+            os.writeObject(Gui1.TrainsList);
+            os.close();
+            fs.close();
         } catch (IOException e) {
-             System.out.println("Error44");                 
+                        System.out.println("Failed to save data of the train");     
         }
         this.setVisible(false);
         Gui1.getJrounForm().setVisible(true);

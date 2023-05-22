@@ -1,9 +1,12 @@
 
 package gui1;
 
+import java.io.Serializable;
 
-public class Train {
+
+public class Train implements Serializable{
     private int TrainNum;
+    private static final long serialVersionUID = 2L;
     private String TrainType;
     private double speed;
     Service service;

@@ -73,6 +73,7 @@ j1=new JourneysTableForm();
                     TrainsList=(ArrayList<Train>)os.readObject();
                     fs.close();
                     os.close();
+                    System.out.println(TrainsList);
                 }
                 catch(ClassNotFoundException | IOException e){
                     e.printStackTrace();

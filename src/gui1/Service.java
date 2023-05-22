@@ -1,7 +1,9 @@
 
 package gui1;
 
-public class Service {
+import java.io.Serializable;
+
+public class Service implements Serializable {
     private boolean wifi;
     private String Meal;
      private  String Drink;

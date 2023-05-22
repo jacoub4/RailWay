@@ -1,8 +1,10 @@
 
 package gui1;
 
+import java.io.Serializable;
 
-public class Engine {
+
+public class Engine implements Serializable{
     private int ID;
     private String type;
     private double dist_traveled;
