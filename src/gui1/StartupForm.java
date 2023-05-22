@@ -23,32 +23,40 @@ public static int ID=0;
         userbtn = new javax.swing.JButton();
         adminbtn = new javax.swing.JButton();
         welcome = new javax.swing.JLabel();
-        welcome1 = new javax.swing.JLabel();
         current_ClinetBtn = new javax.swing.JButton();
         New_clientBtn = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        userbtn.setBackground(new java.awt.Color(0, 51, 51));
+        userbtn.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
+        userbtn.setForeground(new java.awt.Color(51, 51, 51));
         userbtn.setText("User");
         userbtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 userbtnActionPerformed(evt);
             }
         });
+        getContentPane().add(userbtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 360, 150, 70));
 
+        adminbtn.setBackground(new java.awt.Color(51, 51, 0));
+        adminbtn.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
+        adminbtn.setForeground(new java.awt.Color(51, 51, 51));
         adminbtn.setText("Admin");
         adminbtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 adminbtnActionPerformed(evt);
             }
         });
+        getContentPane().add(adminbtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 360, 150, 70));
 
-        welcome.setFont(new java.awt.Font("sansserif", 0, 18)); // NOI18N
-        welcome.setText("Hello.. Happy to see you ^_^");
-
-        welcome1.setFont(new java.awt.Font("sansserif", 0, 18)); // NOI18N
-        welcome1.setText("please choose ");
+        welcome.setFont(new java.awt.Font("Castellar", 3, 36)); // NOI18N
+        welcome.setForeground(new java.awt.Color(51, 51, 51));
+        welcome.setText("WELCOME");
+        getContentPane().add(welcome, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 20, 260, 65));
 
         current_ClinetBtn.setText("Current client");
         current_ClinetBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -56,6 +64,7 @@ public static int ID=0;
                 current_ClinetBtnActionPerformed(evt);
             }
         });
+        getContentPane().add(current_ClinetBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 360, 150, 70));
 
         New_clientBtn.setText("New client");
         New_clientBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -63,54 +72,11 @@ public static int ID=0;
                 New_clientBtnActionPerformed(evt);
             }
         });
+        getContentPane().add(New_clientBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 360, 150, 70));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(87, 87, 87)
-                                .addComponent(welcome))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(128, 128, 128)
-                                .addComponent(welcome1)))
-                        .addGap(25, 25, 25))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addGap(56, 56, 56)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(12, 12, 12)
-                                .addComponent(current_ClinetBtn)
-                                .addGap(41, 41, 41)
-                                .addComponent(New_clientBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(userbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(adminbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(81, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(21, 21, 21)
-                .addComponent(welcome, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(welcome1, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(adminbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(userbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(current_ClinetBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(New_clientBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(123, 123, 123))
-        );
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gui1/roland-losslein-DmDYX_ltI48-unsplash.jpg"))); // NOI18N
+        jLabel2.setText("jLabel2");
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 540, 500));
 
         pack();
         setLocationRelativeTo(null);
@@ -190,8 +156,8 @@ public static int ID=0;
     private javax.swing.JButton New_clientBtn;
     private javax.swing.JButton adminbtn;
     private javax.swing.JButton current_ClinetBtn;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JButton userbtn;
     private javax.swing.JLabel welcome;
-    private javax.swing.JLabel welcome1;
     // End of variables declaration//GEN-END:variables
 }
