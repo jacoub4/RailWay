@@ -50,7 +50,7 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="MealComboBox" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Group type="103" alignment="0" groupAlignment="1" attributes="0">
-                              <Component id="TrainsComboBox" min="-2" max="-2" attributes="0"/>
+                              <Component id="EngineComboBox" min="-2" max="-2" attributes="0"/>
                               <Component id="DrinkComboBox" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
@@ -102,7 +102,7 @@
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="TrainsComboBox" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="EngineComboBox" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace pref="27" max="32767" attributes="0"/>
@@ -195,11 +195,13 @@
         <Property name="text" type="java.lang.String" value="Choose Train Service"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JComboBox" name="TrainsComboBox">
+    <Component class="javax.swing.JComboBox" name="EngineComboBox">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="1">
-            <StringItem index="0" value="I"/>
+          <StringArray count="3">
+            <StringItem index="0" value="mechanical"/>
+            <StringItem index="1" value="hydraulic "/>
+            <StringItem index="2" value="electric"/>
           </StringArray>
         </Property>
       </Properties>

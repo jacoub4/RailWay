@@ -14,10 +14,10 @@ public class Gui1 {
     private static JourneysTableForm j1;
     private static CurrentClientForm c1;
     private static  AddTrainForm T1;
-    private static  AddEngineForm E1;
 public  static ArrayList<Client>ClientsList=new ArrayList<>();
 public static ArrayList<Journey>journeysList=new ArrayList<>();
 public static ArrayList<Train>TrainsList=new ArrayList<>();
+public static ArrayList<Engine>EnginsList=new ArrayList<>();
    
 public static void setNewClientForm(){
    N1= new AddClientForm();
@@ -47,14 +47,6 @@ j1=new JourneysTableForm();
 
     public static void setNewTrainForm() {
         Gui1.T1 = new AddTrainForm();
-    }
-
-    public static AddEngineForm getEngineForm() {
-        return E1;
-    }
-
-    public static void setNewEngineForm() {
-        Gui1.E1 = new AddEngineForm();
     }
 
  

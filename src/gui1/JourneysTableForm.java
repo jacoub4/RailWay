@@ -26,8 +26,8 @@ public class JourneysTableForm extends javax.swing.JFrame {
         CI.add("Start Time");
         CI.add("From/To");
         CI.add("Train");
-        CI.add("Duration");
         CI.add("Distance");
+        CI.add("Duration");
         CI.add("Price");
         tm=(DefaultTableModel)JTable.getModel();
         try{
@@ -107,6 +107,8 @@ public class JourneysTableForm extends javax.swing.JFrame {
         DistanceTextField = new javax.swing.JTextField();
         AddServicebtn = new javax.swing.JButton();
         AddEngineBtn = new javax.swing.JButton();
+        EngineTypeComboBox = new javax.swing.JComboBox<>();
+        jLabel9 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -212,6 +214,15 @@ public class JourneysTableForm extends javax.swing.JFrame {
         });
 
         AddEngineBtn.setText("Add Engine");
+        AddEngineBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AddEngineBtnActionPerformed(evt);
+            }
+        });
+
+        EngineTypeComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "mechanical", "hydraulic ", "electric" }));
+
+        jLabel9.setText("Engine Type");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -269,13 +280,18 @@ public class JourneysTableForm extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(DistanceTextField)
                                 .addGap(19, 19, 19)))))
-                .addGap(87, 87, 87)
+                .addGap(46, 46, 46)
+                .addComponent(jLabel9)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(AddTrainBtn)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(AddServicebtn)
                         .addComponent(AddEngineBtn)
-                        .addComponent(AddServicebtn)))
-                .addContainerGap(66, Short.MAX_VALUE))
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(EngineTypeComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(23, 23, 23))))
+                .addContainerGap(32, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -323,6 +339,10 @@ public class JourneysTableForm extends javax.swing.JFrame {
                 .addComponent(AddTrainBtn)
                 .addGap(30, 30, 30)
                 .addComponent(AddServicebtn)
+                .addGap(32, 32, 32)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(EngineTypeComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel9))
                 .addGap(18, 18, 18)
                 .addComponent(AddEngineBtn)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -430,6 +450,14 @@ public class JourneysTableForm extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_AddServicebtnActionPerformed
 
+    private void AddEngineBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddEngineBtnActionPerformed
+      Engine E=new Engine();
+      E.setType(String.valueOf(EngineTypeComboBox.getSelectedItem()));
+      E.setID(Gui1.EnginsList.size()+1);
+        Gui1.EnginsList.add(E);
+        
+    }//GEN-LAST:event_AddEngineBtnActionPerformed
+
    
     
     
@@ -477,6 +505,7 @@ public class JourneysTableForm extends javax.swing.JFrame {
     private javax.swing.JButton DeleteBtn;
     private javax.swing.JTextField DistanceTextField;
     private javax.swing.JTextField DurationTextField;
+    private javax.swing.JComboBox<String> EngineTypeComboBox;
     private javax.swing.JTextField FromTextField;
     private javax.swing.JTable JTable;
     private javax.swing.JTextField PriceTextField;
@@ -492,6 +521,7 @@ public class JourneysTableForm extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }

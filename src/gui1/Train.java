@@ -6,7 +6,7 @@ public class Train {
     private int TrainNum;
     private String TrainType;
     private double speed;
-    Service S1;
+    Service service;
     Engine engine;
     
     Train(){}
@@ -36,17 +36,20 @@ public class Train {
         this.speed = speed;
     }
 
-    public Service getS1() {
-        return S1;
+    public Service getService() {
+        return service;
+    }
+    public void setService(Service service){
+        this.service=service;
     }
 
    
 
-    public Engine getG() {
+    public Engine getEngine() {
         return engine;
     }
 
-    public void setG(Engine g) {
+    public void setEngine(Engine g) {
         this.engine = g;
     }
     public void performJourney(Journey j1){
@@ -59,7 +62,7 @@ public class Train {
         
         
         
-        return "Train{" + "TrainNum=" + TrainNum + ", TrainType=" + TrainType + ", speed=" + speed + ", S1=" + S1 + ", g=" + engine + '}';
+        return "Train{" + "TrainNum=" + TrainNum + ", TrainType=" + TrainType + ", speed=" + speed + ", Service" + service + ", g=" + engine + '}';
     }
     
     

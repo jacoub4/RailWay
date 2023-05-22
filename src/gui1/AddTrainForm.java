@@ -4,10 +4,21 @@ package gui1;
 
 public class AddTrainForm extends javax.swing.JFrame {
         Service service;
-    
+        Engine engine;
+        Train train;
     public AddTrainForm() {
         initComponents();
         service=new Service();
+        engine=new Engine();
+        train=new Train();
+    }
+    
+    public Service getServiceDetails(){
+    service.setWifi(WifiCheck.isSelected());
+        service.setScreens(ScreenCheck.isSelected());
+        service.setDrink(String.valueOf(DrinkComboBox.getSelectedItem()));
+        service.setMeal(String.valueOf(MealComboBox.getSelectedItem()));
+        return service;
     }
 
     @SuppressWarnings("unchecked")
@@ -24,7 +35,7 @@ public class AddTrainForm extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         SpeedTextField = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        TrainsComboBox = new javax.swing.JComboBox<>();
+        EngineComboBox = new javax.swing.JComboBox<>();
         jLabel5 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -78,7 +89,7 @@ public class AddTrainForm extends javax.swing.JFrame {
 
         jLabel4.setText("Choose Train Service");
 
-        TrainsComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "I" }));
+        EngineComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "mechanical", "hydraulic ", "electric" }));
 
         jLabel5.setText("Engine");
 
@@ -107,7 +118,7 @@ public class AddTrainForm extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(MealComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(TrainsComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(EngineComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(DrinkComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
@@ -146,7 +157,7 @@ public class AddTrainForm extends javax.swing.JFrame {
                     .addComponent(DrinkComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(TrainsComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(EngineComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
                 .addComponent(ApplyBtn)
@@ -174,10 +185,14 @@ public class AddTrainForm extends javax.swing.JFrame {
     }//GEN-LAST:event_ScreenCheckActionPerformed
 
     private void ApplyBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ApplyBtnActionPerformed
-        service.setWifi(WifiCheck.isSelected());
-        service.setScreens(ScreenCheck.isSelected());
-        service.setDrink(String.valueOf(DrinkComboBox.getSelectedItem()));
-        service.setMeal(String.valueOf(MealComboBox.getSelectedItem()));
+        //put servide attributes 
+        train.setService(getServiceDetails());
+        //put Engine 
+        for(int i=0;i<Gui1.EnginsList.size();i++){
+         
+             
+        }
+        
         
     }//GEN-LAST:event_ApplyBtnActionPerformed
 
@@ -223,10 +238,10 @@ public class AddTrainForm extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton ApplyBtn;
     private javax.swing.JComboBox<String> DrinkComboBox;
+    private javax.swing.JComboBox<String> EngineComboBox;
     private javax.swing.JComboBox<String> MealComboBox;
     private javax.swing.JCheckBox ScreenCheck;
     private javax.swing.JTextField SpeedTextField;
-    private javax.swing.JComboBox<String> TrainsComboBox;
     private javax.swing.JCheckBox WifiCheck;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
