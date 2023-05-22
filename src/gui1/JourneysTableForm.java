@@ -106,6 +106,7 @@ public class JourneysTableForm extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         DistanceTextField = new javax.swing.JTextField();
         AddServicebtn = new javax.swing.JButton();
+        AddEngineBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -210,6 +211,8 @@ public class JourneysTableForm extends javax.swing.JFrame {
             }
         });
 
+        AddEngineBtn.setText("Add Engine");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -269,7 +272,9 @@ public class JourneysTableForm extends javax.swing.JFrame {
                 .addGap(87, 87, 87)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(AddTrainBtn)
-                    .addComponent(AddServicebtn))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(AddEngineBtn)
+                        .addComponent(AddServicebtn)))
                 .addContainerGap(66, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -318,6 +323,8 @@ public class JourneysTableForm extends javax.swing.JFrame {
                 .addComponent(AddTrainBtn)
                 .addGap(30, 30, 30)
                 .addComponent(AddServicebtn)
+                .addGap(18, 18, 18)
+                .addComponent(AddEngineBtn)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -410,7 +417,9 @@ public class JourneysTableForm extends javax.swing.JFrame {
     }//GEN-LAST:event_formKeyPressed
 
     private void AddTrainBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddTrainBtnActionPerformed
-       
+        this.setVisible(false);
+        Gui1.setNewTrainForm();
+        Gui1.getTrainForm().setVisible(true);
     }//GEN-LAST:event_AddTrainBtnActionPerformed
 
     private void DistanceTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DistanceTextFieldActionPerformed
@@ -460,6 +469,7 @@ public class JourneysTableForm extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton AddEngineBtn;
     private javax.swing.JButton AddJourneyBtn;
     private javax.swing.JButton AddServicebtn;
     private javax.swing.JButton AddTrainBtn;
