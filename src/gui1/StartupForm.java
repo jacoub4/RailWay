@@ -33,7 +33,7 @@ public static int ID=0;
 
         userbtn.setBackground(new java.awt.Color(0, 51, 51));
         userbtn.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
-        userbtn.setForeground(new java.awt.Color(51, 51, 51));
+        userbtn.setForeground(new java.awt.Color(255, 255, 255));
         userbtn.setText("User");
         userbtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -42,9 +42,9 @@ public static int ID=0;
         });
         getContentPane().add(userbtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 360, 150, 70));
 
-        adminbtn.setBackground(new java.awt.Color(51, 51, 0));
+        adminbtn.setBackground(new java.awt.Color(0, 51, 51));
         adminbtn.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
-        adminbtn.setForeground(new java.awt.Color(51, 51, 51));
+        adminbtn.setForeground(new java.awt.Color(255, 255, 255));
         adminbtn.setText("Admin");
         adminbtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -58,6 +58,9 @@ public static int ID=0;
         welcome.setText("WELCOME");
         getContentPane().add(welcome, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 20, 260, 65));
 
+        current_ClinetBtn.setBackground(new java.awt.Color(0, 51, 51));
+        current_ClinetBtn.setFont(new java.awt.Font("Tahoma", 0, 17)); // NOI18N
+        current_ClinetBtn.setForeground(new java.awt.Color(255, 255, 255));
         current_ClinetBtn.setText("Current client");
         current_ClinetBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -66,6 +69,9 @@ public static int ID=0;
         });
         getContentPane().add(current_ClinetBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 360, 150, 70));
 
+        New_clientBtn.setBackground(new java.awt.Color(0, 51, 51));
+        New_clientBtn.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
+        New_clientBtn.setForeground(new java.awt.Color(255, 255, 255));
         New_clientBtn.setText("New client");
         New_clientBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
