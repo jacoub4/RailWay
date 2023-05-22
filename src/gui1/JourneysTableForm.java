@@ -4,10 +4,8 @@ package gui1;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.util.Date;
 import java.util.Vector;
 import javax.swing.JOptionPane;
 
@@ -28,6 +26,8 @@ public class JourneysTableForm extends javax.swing.JFrame {
         CI.add("Start Time");
         CI.add("From/To");
         CI.add("Train");
+        CI.add("Duration");
+        CI.add("Distance");
         CI.add("Price");
         tm=(DefaultTableModel)JTable.getModel();
         try{
@@ -40,7 +40,7 @@ public class JourneysTableForm extends javax.swing.JFrame {
         catch(Exception e){}
     }
    public String[] GetAllData(){                    //Method to get all the data from the TextFields
-        String Data[]={DateTextField.getText(),StartTimeTextField.getText(),FromTextField.getText()+"/"+ToTextField.getText(),TrainTextField1.getText(),PriceTextField.getText()+"$"};
+        String Data[]={DateTextField.getText(),StartTimeTextField.getText(),FromTextField.getText()+"/"+ToTextField.getText(),TrainTextField1.getText(),DistanceTextField.getText()+" Km",DurationTextField.getText()+"H",PriceTextField.getText()+"$"};
             return Data;
    }
    
@@ -51,6 +51,8 @@ public class JourneysTableForm extends javax.swing.JFrame {
             ToTextField.setText("");
             PriceTextField.setText("");
             TrainTextField1.setText("");
+            DurationTextField.setText("");
+            DistanceTextField.setText("");
    }
     
     public void AddJourney()
@@ -99,6 +101,11 @@ public class JourneysTableForm extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         TrainTextField1 = new javax.swing.JTextField();
         AddTrainBtn = new javax.swing.JButton();
+        jLabel7 = new javax.swing.JLabel();
+        DurationTextField = new javax.swing.JTextField();
+        jLabel8 = new javax.swing.JLabel();
+        DistanceTextField = new javax.swing.JTextField();
+        AddServicebtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -113,11 +120,11 @@ public class JourneysTableForm extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Date", "Start Time", "From/To", "Train", "Price"
+                "Date", "Start Time", "From/To", "Train", "Distance", "Duration", "Price"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
+                false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -184,67 +191,91 @@ public class JourneysTableForm extends javax.swing.JFrame {
             }
         });
 
+        jLabel7.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel7.setText("Duration");
+
+        jLabel8.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel8.setText("Distance");
+
+        DistanceTextField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                DistanceTextFieldActionPerformed(evt);
+            }
+        });
+
+        AddServicebtn.setText("Add Service");
+        AddServicebtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AddServicebtnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(jLabel1)
-                                .addGap(18, 18, 18)
-                                .addComponent(DateTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 390, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(18, 18, 18)
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 437, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(jLabel2)
-                                .addGap(18, 18, 18)
-                                .addComponent(FromTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(ToTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(19, 19, 19))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(4, 4, 4)
-                                .addComponent(jLabel3)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(StartTimeTextField)))
-                        .addGap(87, 87, 87)
-                        .addComponent(AddTrainBtn))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(25, 25, 25)
-                        .addComponent(AddJourneyBtn)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel1)
                         .addGap(18, 18, 18)
-                        .addComponent(DeleteBtn)
+                        .addComponent(DateTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 390, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
                         .addGap(18, 18, 18)
-                        .addComponent(UpdateBtn))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 437, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                .addComponent(jLabel5)
+                        .addComponent(jLabel2)
+                        .addGap(18, 18, 18)
+                        .addComponent(FromTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(ToTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(19, 19, 19))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(4, 4, 4)
+                        .addComponent(jLabel3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(StartTimeTextField))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                    .addComponent(jLabel5)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(PriceTextField))
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                    .addComponent(jLabel6)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(TrainTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(AddJourneyBtn)
                                 .addGap(18, 18, 18)
-                                .addComponent(PriceTextField))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                .addComponent(jLabel6)
+                                .addComponent(DeleteBtn)
                                 .addGap(18, 18, 18)
-                                .addComponent(TrainTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addComponent(UpdateBtn))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel7)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(DurationTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jLabel8)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(DistanceTextField)
+                                .addGap(19, 19, 19)))))
+                .addGap(87, 87, 87)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(AddTrainBtn)
+                    .addComponent(AddServicebtn))
                 .addContainerGap(66, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(172, 172, 172)
-                        .addComponent(AddTrainBtn)))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -263,16 +294,31 @@ public class JourneysTableForm extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
                     .addComponent(TrainTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(12, 12, 12)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(DurationTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(DistanceTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(5, 5, 5)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(PriceTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addGap(33, 33, 33)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(AddJourneyBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(DeleteBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(UpdateBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(31, 31, 31))
+                .addGap(20, 20, 20))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(172, 172, 172)
+                .addComponent(AddTrainBtn)
+                .addGap(30, 30, 30)
+                .addComponent(AddServicebtn)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -281,7 +327,7 @@ public class JourneysTableForm extends javax.swing.JFrame {
 
     private void AddJourneyBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddJourneyBtnActionPerformed
            //Check if there is any empty text field to show warning message
-        if(DateTextField.getText().equals("")||StartTimeTextField.getText().equals("")||FromTextField.getText().equals("")||ToTextField.getText().equals("")||PriceTextField.getText().equals("")||TrainTextField1.getText().equals("")){
+        if(DateTextField.getText().equals("")||StartTimeTextField.getText().equals("")||FromTextField.getText().equals("")||ToTextField.getText().equals("")||PriceTextField.getText().equals("")||TrainTextField1.getText().equals("")||DurationTextField.getText().equals("")||DistanceTextField.getText().equals("")){
            
            JOptionPane.showMessageDialog(this, "Please Enter all the data");
            
@@ -325,7 +371,7 @@ public class JourneysTableForm extends javax.swing.JFrame {
     private void UpdateBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UpdateBtnActionPerformed
       if(JTable.getSelectedRowCount()==1){
           String Data[]=GetAllData();
-          for(int i=0;i<5;i++){
+          for(int i=0;i<7;i++){
               tm.setValueAt(Data[i], JTable.getSelectedRow(), i);
           }
           saveJourneyTable();
@@ -353,7 +399,9 @@ public class JourneysTableForm extends javax.swing.JFrame {
         FromTextField.setText(From_To[0]);
         ToTextField.setText(From_To[1]);
         TrainTextField1.setText(String.valueOf(tm.getValueAt(JTable.getSelectedRow(),3)));
-        PriceTextField.setText(String.valueOf(tm.getValueAt(JTable.getSelectedRow(),4)));
+        DistanceTextField.setText(String.valueOf(tm.getValueAt(JTable.getSelectedRow(),4)));
+        DurationTextField.setText(String.valueOf(tm.getValueAt(JTable.getSelectedRow(),5)));
+        PriceTextField.setText(String.valueOf(tm.getValueAt(JTable.getSelectedRow(),6)));
         
     }//GEN-LAST:event_JTableMouseClicked
 
@@ -364,6 +412,14 @@ public class JourneysTableForm extends javax.swing.JFrame {
     private void AddTrainBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddTrainBtnActionPerformed
        
     }//GEN-LAST:event_AddTrainBtnActionPerformed
+
+    private void DistanceTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DistanceTextFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_DistanceTextFieldActionPerformed
+
+    private void AddServicebtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddServicebtnActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_AddServicebtnActionPerformed
 
    
     
@@ -405,9 +461,12 @@ public class JourneysTableForm extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton AddJourneyBtn;
+    private javax.swing.JButton AddServicebtn;
     private javax.swing.JButton AddTrainBtn;
     private javax.swing.JTextField DateTextField;
     private javax.swing.JButton DeleteBtn;
+    private javax.swing.JTextField DistanceTextField;
+    private javax.swing.JTextField DurationTextField;
     private javax.swing.JTextField FromTextField;
     private javax.swing.JTable JTable;
     private javax.swing.JTextField PriceTextField;
@@ -421,6 +480,8 @@ public class JourneysTableForm extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }
