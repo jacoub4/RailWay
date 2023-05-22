@@ -1,20 +1,17 @@
 
 package gui1;
 
-import java.util.ArrayList;
-
-
 public class Service {
     private boolean wifi;
-    private ArrayList<String> Meals=new ArrayList<>();
-     private  ArrayList<String> Drinks=new ArrayList<>();
+    private String Meal;
+     private  String Drink;
      private boolean screens;
      
      public Service(){}
-     public Service(boolean wifi,ArrayList Meals,ArrayList Drinks, boolean Screens){
+     public Service(boolean wifi,String Meal,String Drink, boolean Screens){
      this.wifi=wifi;
-     this.Meals=Meals;
-     this.Drinks=Drinks;
+     this.Meal=Meal;
+     this.Drink=Drink;
      this.screens=Screens;
      }
 
@@ -26,21 +23,23 @@ public class Service {
         this.wifi = wifi;
     }
 
-    public ArrayList<String> getMeals() {
-        return Meals;
+    public String getMeal() {
+        return Meal;
     }
 
-    public void setMeals(ArrayList<String> Meals) {
-        this.Meals = Meals;
+    public void setMeal(String Meal) {
+        this.Meal = Meal;
     }
 
-    public ArrayList<String> getDrinks() {
-        return Drinks;
+    public String getDrink() {
+        return Drink;
     }
 
-    public void setDrinks(ArrayList<String> Drinks) {
-        this.Drinks = Drinks;
+    public void setDrink(String Drink) {
+        this.Drink = Drink;
     }
+
+    
 
     public boolean isScreens() {
         return screens;
@@ -52,7 +51,7 @@ public class Service {
 
     @Override
     public String toString() {                                                      //might need changes 
-        return "Service{" + "wifi=" + wifi + "\n Meals=" + Meals + "\nDrinks=" + Drinks + "\n screens=" + screens + '}';
+        return "Service{" + "wifi=" + wifi + "\n Meal=" + Meal + "\nDrinks=" + Drink + "\n screens=" + screens + '}';
     }
     
      
