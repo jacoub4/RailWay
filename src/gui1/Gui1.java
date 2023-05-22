@@ -3,6 +3,7 @@ package gui1;
 
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.ObjectInput;
 import java.io.ObjectInputStream;
 import java.util.ArrayList;
 
@@ -17,7 +18,6 @@ public class Gui1 {
 public  static ArrayList<Client>ClientsList=new ArrayList<>();
 public static ArrayList<Journey>journeysList=new ArrayList<>();
 public static ArrayList<Train>TrainsList=new ArrayList<>();
-public static ArrayList<Engine>EnginsList=new ArrayList<>();
    
 public static void setNewClientForm(){
    N1= new AddClientForm();
@@ -63,18 +63,21 @@ j1=new JourneysTableForm();
                     fs1.close();
                     os1.close();
                     System.out.println(ClientsList);
-                    
-                    FileInputStream fs2=new FileInputStream("Trains.ser");
-                    ObjectInputStream os2=new ObjectInputStream(fs2);
-                    TrainsList=(ArrayList<Train>)os2.readObject();
-                    fs2.close();
-                    os2.close();
                 }
-                   
-                
                 catch(IOException | ClassNotFoundException e){
                     e.printStackTrace();
                 }
+                
+                try(FileInputStream fs=new FileInputStream("Trains.ser");
+                        ObjectInputStream os =new ObjectInputStream(fs)){
+                    TrainsList=(ArrayList<Train>)os.readObject();
+                    fs.close();
+                    os.close();
+                }
+                catch(ClassNotFoundException | IOException e){
+                    e.printStackTrace();
+                }
+                
             }
         });
 

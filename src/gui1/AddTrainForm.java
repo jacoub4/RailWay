@@ -1,6 +1,10 @@
 
 package gui1;
 
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
+
 
 public class AddTrainForm extends javax.swing.JFrame {
         Service service;
@@ -89,7 +93,7 @@ public class AddTrainForm extends javax.swing.JFrame {
 
         jLabel4.setText("Choose Train Service");
 
-        EngineComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "mechanical", "hydraulic ", "electric" }));
+        EngineComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "electric", "hydraulic ", "mechanical" }));
 
         jLabel5.setText("Engine");
 
@@ -187,11 +191,38 @@ public class AddTrainForm extends javax.swing.JFrame {
     private void ApplyBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ApplyBtnActionPerformed
         //put servide attributes 
         train.setService(getServiceDetails());
-        //put Engine 
-        for(int i=0;i<Gui1.EnginsList.size();i++){
-         
-             
+        //put Engine Type
+        engine.setType(String.valueOf(EngineComboBox.getSelectedItem()));
+        engine.setDist_traveled(0);
+        engine.setID(Gui1.TrainsList.size()+1);
+        train.setEngine(engine);
+        if(WifiCheck.isSelected()&&ScreenCheck.isSelected()){
+            train.setTrainType("High Class");
         }
+        else if(WifiCheck.isSelected()^ScreenCheck.isSelected()){
+            train.setTrainType("Medium");
+        }
+        else{
+            train.setTrainType("Normal");
+        }
+        train.setTrainNum(Gui1.TrainsList.size()+1);
+        train.setSpeed(Double.parseDouble(SpeedTextField.getText()));
+        System.out.println(train);
+        //add the train to the ArrayList
+        Gui1.TrainsList.add(train);
+        System.out.println(Gui1.TrainsList);
+        //serializing the Data
+        System.out.println("I am here");
+        try (FileOutputStream fs1 = new FileOutputStream("Trains.ser");
+             ObjectOutputStream os1 = new ObjectOutputStream(fs1)) {
+            os1.writeObject(Gui1.TrainsList);
+            os1.close();
+            fs1.close();
+        } catch (IOException e) {
+             System.out.println("Error44");                 
+        }
+        this.setVisible(false);
+        Gui1.getJrounForm().setVisible(true);
         
         
     }//GEN-LAST:event_ApplyBtnActionPerformed
