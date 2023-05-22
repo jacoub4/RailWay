@@ -4,6 +4,7 @@ package gui1;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.Date;
@@ -38,19 +39,28 @@ public class JourneysTableForm extends javax.swing.JFrame {
         }
         catch(Exception e){}
     }
-   public String[] GetAllData(){
-        String Data[]={DateTextField.getText(),StartTimeTextField.getText(),FromTextField.getText()+"/"+ToTextField.getText(),TrainTextField1.getText(),PriceTextField.getText()};
+   public String[] GetAllData(){                    //Method to get all the data from the TextFields
+        String Data[]={DateTextField.getText(),StartTimeTextField.getText(),FromTextField.getText()+"/"+ToTextField.getText(),TrainTextField1.getText(),PriceTextField.getText()+"$"};
             return Data;
    }
+   
+   public void EmptyTextFields(){                               //Method to empty all textFields
+        DateTextField.setText("");
+            StartTimeTextField.setText("");
+            FromTextField.setText("");
+            ToTextField.setText("");
+            PriceTextField.setText("");
+            TrainTextField1.setText("");
+   }
     
-    public void addJourney(Date D1,Double startTime,String FromTo,String Train,double Price)
+    public void AddJourney()
            
     {
-       tm.addRow(new Object[]{D1,startTime,FromTo,Train,Price});
+       tm.addRow(GetAllData());
        saveJourneyTable();
     }
     
-    public void saveJourneyTable(){
+    public void saveJourneyTable(){                                     //Method to save The journeyTable to the data base
         try{
         FileOutputStream fs=new FileOutputStream("JourneyTable");
         ObjectOutputStream os=new ObjectOutputStream(fs);
@@ -92,6 +102,11 @@ public class JourneysTableForm extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
+        addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                formKeyPressed(evt);
+            }
+        });
 
         JTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -163,6 +178,11 @@ public class JourneysTableForm extends javax.swing.JFrame {
 
         AddTrainBtn.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         AddTrainBtn.setText("Add Train");
+        AddTrainBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AddTrainBtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -267,18 +287,11 @@ public class JourneysTableForm extends javax.swing.JFrame {
            
            }
         else{
-        //Adding Data in the table 
-           String Data[]=GetAllData();
-            tm.addRow(Data);
-            saveJourneyTable();
+        //Adding Journey to the table
+           AddJourney();
             JOptionPane.showMessageDialog(this, "Succesfully added a Journey");     //show message 
             //clearing TextFields
-            DateTextField.setText("");
-            StartTimeTextField.setText("");
-            FromTextField.setText("");
-            ToTextField.setText("");
-            PriceTextField.setText("");
-            TrainTextField1.setText("");
+           EmptyTextFields();
         
         }
             
@@ -289,8 +302,12 @@ public class JourneysTableForm extends javax.swing.JFrame {
     private void DeleteBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeleteBtnActionPerformed
         //check if just one row is selected if yes then delete the selected row
        if(JTable.getSelectedRowCount()==1){
+           int response=JOptionPane.showConfirmDialog(this, "Do you want to Delete the journey!!", "", JOptionPane.YES_NO_OPTION);
+           if(response==JOptionPane.YES_OPTION){
        tm.removeRow(JTable.getSelectedRow());
        saveJourneyTable();
+           EmptyTextFields();
+           }
        }
        //if admin didn't choose any row to be deleted
        else{
@@ -310,7 +327,16 @@ public class JourneysTableForm extends javax.swing.JFrame {
           String Data[]=GetAllData();
           for(int i=0;i<5;i++){
               tm.setValueAt(Data[i], JTable.getSelectedRow(), i);
-          }}
+          }
+          saveJourneyTable();
+      JOptionPane.showMessageDialog(this, "successfully Updated");
+      EmptyTextFields();
+      }
+      else{
+      JOptionPane.showMessageDialog(this, "please select a row to update");
+      
+      }
+      
       
       
       
@@ -328,7 +354,16 @@ public class JourneysTableForm extends javax.swing.JFrame {
         ToTextField.setText(From_To[1]);
         TrainTextField1.setText(String.valueOf(tm.getValueAt(JTable.getSelectedRow(),3)));
         PriceTextField.setText(String.valueOf(tm.getValueAt(JTable.getSelectedRow(),4)));
+        
     }//GEN-LAST:event_JTableMouseClicked
+
+    private void formKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyPressed
+        
+    }//GEN-LAST:event_formKeyPressed
+
+    private void AddTrainBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddTrainBtnActionPerformed
+       
+    }//GEN-LAST:event_AddTrainBtnActionPerformed
 
    
     

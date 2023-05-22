@@ -43,8 +43,8 @@ j1=new JourneysTableForm();
       
          java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new StartupForm().setVisible(true);
                 S1=new StartupForm();
+                S1.setVisible(true);
                 
                 try(FileInputStream fs1= new FileInputStream("Clients.ser");
                     ObjectInputStream os1=new ObjectInputStream(fs1)){
