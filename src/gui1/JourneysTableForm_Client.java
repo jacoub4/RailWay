@@ -1,8 +1,15 @@
 
 package gui1;
 
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.Vector;
-import javax.swing.table.DefaultTableModel;
+import javax.swing.JOptionPane;
+
+import javax.swing.table.DefaultTableModel;;
 
 
 public class JourneysTableForm_Client extends javax.swing.JFrame {
@@ -10,6 +17,7 @@ public class JourneysTableForm_Client extends javax.swing.JFrame {
   private DefaultTableModel tm; 
     public JourneysTableForm_Client() {
         initComponents();
+        initTableData();
         
     }
     public void initTableData(){
@@ -17,14 +25,23 @@ public class JourneysTableForm_Client extends javax.swing.JFrame {
         CI.add("Date");
         CI.add("Start Time");
         CI.add("From/To");
-        CI.add("Train");
+        CI.add("Train Number");
         CI.add("Distance");
         CI.add("Duration");
         CI.add("Price");
         tm=(DefaultTableModel)JourneyTable.getModel();
-    }
-
     
+ try{
+        FileInputStream fs=new FileInputStream("JourneyTable");
+        ObjectInputStream os=new ObjectInputStream(fs);
+        tm.setDataVector((Vector)os.readObject(), CI);
+        fs.close();
+        os.close();
+        }          
+ catch(ClassNotFoundException |IOException e){
+     System.out.println("Error in JourneyTable for clients");
+}   
+    }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -39,7 +56,7 @@ public class JourneysTableForm_Client extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Date", "Start Time", "From/To", "Train", "Distance", "Duration", "Price"
+                "Date", "Start Time", "From/To", "Train Number", "Distance", "Duration", "Price"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -63,18 +80,19 @@ public class JourneysTableForm_Client extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 437, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(34, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 518, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(37, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(46, Short.MAX_VALUE))
+                .addContainerGap(42, Short.MAX_VALUE))
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void JourneyTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JourneyTableMouseClicked
