@@ -12,10 +12,9 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 
-public class JourneysTableForm extends javax.swing.JFrame {
-
+public class JourneysTableForm_Admin extends javax.swing.JFrame {
  private DefaultTableModel tm;
-    public JourneysTableForm() {
+    public JourneysTableForm_Admin() {
         initComponents();
         initTableData();
     }
@@ -39,9 +38,11 @@ public class JourneysTableForm extends javax.swing.JFrame {
         }
         catch(Exception e){}
     }
-   public String[] GetAllData(){                    //Method to get all the data from the TextFields
-        String Data[]={DateTextField.getText(),StartTimeTextField.getText(),FromTextField.getText()+"/"+ToTextField.getText(),TrainTextField1.getText(),DistanceTextField.getText()+" Km",DurationTextField.getText()+"H",PriceTextField.getText()+"$"};
-            return Data;
+   public String[] GetAllData(){
+       //Method to get all the data from the TextFields
+        String Data[]={DateTextField.getText(),StartTimeTextField.getText(),
+            FromTextField.getText()+"/"+ToTextField.getText(),TrainTextField1.getText(),DistanceTextField.getText()+" Km",DurationTextField.getText()+"H",PriceTextField.getText()+"$"}; 
+        return Data;
    }
    
    public void EmptyTextFields(){                               //Method to empty all textFields
@@ -426,21 +427,23 @@ public class JourneysTableForm extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(JourneysTableForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(JourneysTableForm_Admin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(JourneysTableForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(JourneysTableForm_Admin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(JourneysTableForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(JourneysTableForm_Admin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(JourneysTableForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(JourneysTableForm_Admin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new JourneysTableForm().setVisible(true);
+                new JourneysTableForm_Admin().setVisible(true);
             }
         });
     }

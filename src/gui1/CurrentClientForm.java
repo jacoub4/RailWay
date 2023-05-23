@@ -2,6 +2,7 @@
 package gui1;
 
 import javafx.scene.AccessibleAttribute;
+import javax.swing.JOptionPane;
 
 
 public class CurrentClientForm extends javax.swing.JFrame {
@@ -104,12 +105,12 @@ public class CurrentClientForm extends javax.swing.JFrame {
         {
             if(NameInput.getText().equals(Gui1.ClientsList.get(i).getName()) && (String.valueOf(PasswordInput.getPassword())).equals(Gui1.ClientsList.get(i).getPassword()))
             {
-                Gui1.setJournForm();
+                Gui1.setClientJounrForm();
                 this.setVisible(false);
-                Gui1.getJrounForm().setVisible(true);
+               Gui1.getClientJournForm().setVisible(true);
             }
             else
-                ErrorLabel.setText("Client doesn't exist");
+                JOptionPane.showMessageDialog(this, "Make sure To Enter your data correctly");
                 
                 
         }

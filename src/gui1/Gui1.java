@@ -12,7 +12,8 @@ import java.util.ArrayList;
 public class Gui1 {
     private static StartupForm S1;
     private static AddClientForm N1;
-    private static JourneysTableForm j1;
+    private static JourneysTableForm_Admin JA;
+    private static JourneysTableForm_Client JC; 
     private static CurrentClientForm c1;
     private static  AddTrainForm T1;
 public  static ArrayList<Client>ClientsList=new ArrayList<>();
@@ -28,18 +29,28 @@ public static StartupForm getStartup(){
 public static AddClientForm getAddingClient(){
     return N1;
 }                                                                                                   //think about adding current client object here!! (it's a static variable to know which client data we need right now ...might get used in journeytable and also in ading new client)
-public static JourneysTableForm getJrounForm(){
-    return j1;
+public static JourneysTableForm_Admin getJrounForm(){
+    return JA;
 }
+public static void setJournForm(){
+JA=new JourneysTableForm_Admin();
+}
+
+public static void setClientJounrForm(){
+    JC=new JourneysTableForm_Client();
+}
+public static JourneysTableForm_Client getClientJournForm(){
+    return JC;
+}
+
+
 public static CurrentClientForm getCurrent_ClientForm(){
     return c1;
 }
 public static void setCurrent_ClinetForm(){
 c1=new CurrentClientForm();
 }
-public static void setJournForm(){
-j1=new JourneysTableForm();
-}
+
 
     public static AddTrainForm getTrainForm() {
         return T1;
