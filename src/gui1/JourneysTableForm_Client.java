@@ -37,6 +37,7 @@ public class JourneysTableForm_Client extends javax.swing.JFrame {
         tm.setDataVector((Vector)os.readObject(), CI);
         fs.close();
         os.close();
+        
         }          
  catch(ClassNotFoundException |IOException e){
      System.out.println("Error in JourneyTable for clients");

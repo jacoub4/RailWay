@@ -65,7 +65,7 @@ public class Train implements Serializable{
         
         
         
-        return "Train{" + "TrainNum=" + TrainNum + ", TrainType=" + TrainType + ", speed=" + speed + ", Service" + service + ", g=" + engine + '}';
+        return "Train Info:\n" + "Train Number: " + TrainNum + "\n Type: " + TrainType + "\nspeed: " + speed + "\nService: " + service + "\nEngine: " + engine + '}';
     }
     
     

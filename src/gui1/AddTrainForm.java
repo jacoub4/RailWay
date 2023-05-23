@@ -196,6 +196,7 @@ public class AddTrainForm extends javax.swing.JFrame {
         engine.setID(Gui1.TrainsList.size()+1);
         //
         train.setEngine(engine);
+        //setting the Type of the train
         if(WifiCheck.isSelected()&&ScreenCheck.isSelected()){
             train.setTrainType("High Class");
         }
@@ -205,12 +206,14 @@ public class AddTrainForm extends javax.swing.JFrame {
         else{
             train.setTrainType("Normal");
         }
+        //set train number
         train.setTrainNum(Gui1.TrainsList.size()+1);
+        //set train speed
         train.setSpeed(Double.parseDouble(SpeedTextField.getText()));
-        System.out.println(train);
+        System.out.println(train);                                              //delete later
         //add the train to the ArrayList
         Gui1.TrainsList.add(train);
-        System.out.println(Gui1.TrainsList);
+        System.out.println(Gui1.TrainsList);                                    //  delete later
         //serializing the Data
 
         try (FileOutputStream fs = new FileOutputStream("Trains.ser");
@@ -222,7 +225,9 @@ public class AddTrainForm extends javax.swing.JFrame {
                         System.out.println("Failed to save data of the train");     
         }
         this.setVisible(false);
+        Gui1.getJrounForm().PrepareTrainsComboBox();
         Gui1.getJrounForm().setVisible(true);
+        
         
         
     }//GEN-LAST:event_ApplyBtnActionPerformed

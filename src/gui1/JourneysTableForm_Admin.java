@@ -14,12 +14,13 @@ import javax.swing.table.DefaultTableModel;
 
 public class JourneysTableForm_Admin extends javax.swing.JFrame {
  private DefaultTableModel tm;
+      double Duration;    
+      Train T;  //Dummy Train
     public JourneysTableForm_Admin() {
         initComponents();
         initTableData();
-        for(Train train:Gui1.TrainsList){
-        TrainComboBox.addItem("T"+train.getTrainNum());
-        }
+        PrepareTrainsComboBox();
+        
     }
     private void initTableData()
     {
@@ -39,12 +40,29 @@ public class JourneysTableForm_Admin extends javax.swing.JFrame {
         fs.close();
         os.close();
         }
-        catch(Exception e){}
+        catch(Exception e){
+        e.printStackTrace();}
+    }
+    public Train getSelectedTrain(){
+        
+        for(Train train:Gui1.TrainsList){
+            if(train.getTrainNum()==Integer.parseInt(TrainComboBox.getSelectedItem().toString().replace("T",""))){
+                return train;
+                
+            }}
+        return T;
+    }
+    public void PrepareTrainsComboBox(){
+        TrainComboBox.removeAllItems();
+        for(Train train:Gui1.TrainsList){
+        TrainComboBox.addItem("T"+train.getTrainNum());
+        }
     }
    public String[] GetAllData(){
+       Train T=getSelectedTrain();
+       Duration=Double.parseDouble(String.format("%.2f",Double.parseDouble(DistanceTextField.getText())/T.getSpeed()));
        //Method to get all the data from the TextFields
-        String Data[]={DateTextField.getText(),StartTimeTextField.getText(),
-            FromTextField.getText()+"/"+ToTextField.getText(),String.valueOf(TrainComboBox.getSelectedItem()).replace("T",""),DistanceTextField.getText()+"Km",DurationTextField.getText()+"H",PriceTextField.getText()+"$"}; 
+        String Data[]={DateTextField.getText(),StartTimeTextField.getText(),FromTextField.getText()+"/"+ToTextField.getText(),String.valueOf(TrainComboBox.getSelectedItem()).replace("T",""),DistanceTextField.getText()+"Km",Duration+"H",PriceTextField.getText()+"$"}; 
         return Data;
    }
    
@@ -54,7 +72,6 @@ public class JourneysTableForm_Admin extends javax.swing.JFrame {
             FromTextField.setText("");
             ToTextField.setText("");
             PriceTextField.setText("");
-            DurationTextField.setText("");
             DistanceTextField.setText("");
    }
     
@@ -76,7 +93,7 @@ public class JourneysTableForm_Admin extends javax.swing.JFrame {
             System.out.println("Failed to save data");
         }
                                                                      
-        
+       
     }
     
     
@@ -103,8 +120,6 @@ public class JourneysTableForm_Admin extends javax.swing.JFrame {
         PriceTextField = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         AddTrainBtn = new javax.swing.JButton();
-        jLabel7 = new javax.swing.JLabel();
-        DurationTextField = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
         DistanceTextField = new javax.swing.JTextField();
         TrainComboBox = new javax.swing.JComboBox<>();
@@ -193,9 +208,6 @@ public class JourneysTableForm_Admin extends javax.swing.JFrame {
             }
         });
 
-        jLabel7.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel7.setText("Duration");
-
         jLabel8.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel8.setText("Distance");
 
@@ -205,6 +217,29 @@ public class JourneysTableForm_Admin extends javax.swing.JFrame {
             }
         });
 
+        TrainComboBox.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                TrainComboBoxItemStateChanged(evt);
+            }
+        });
+        TrainComboBox.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                TrainComboBoxFocusGained(evt);
+            }
+        });
+        TrainComboBox.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                TrainComboBoxMouseClicked(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                TrainComboBoxMousePressed(evt);
+            }
+        });
+        TrainComboBox.addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentShown(java.awt.event.ComponentEvent evt) {
+                TrainComboBoxComponentShown(evt);
+            }
+        });
         TrainComboBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 TrainComboBoxActionPerformed(evt);
@@ -217,60 +252,58 @@ public class JourneysTableForm_Admin extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(jLabel1)
-                                .addGap(18, 18, 18)
-                                .addComponent(DateTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 390, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(jLabel2)
-                                .addGap(18, 18, 18)
-                                .addComponent(FromTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(ToTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(19, 19, 19))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(4, 4, 4)
-                                .addComponent(jLabel3)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(StartTimeTextField))
-                            .addGroup(layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel5)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(PriceTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel6)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(TrainComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(AddJourneyBtn)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(DeleteBtn)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(UpdateBtn))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel7)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(DurationTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(jLabel8)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(DistanceTextField)
-                                        .addGap(19, 19, 19)))))
-                        .addGap(117, 117, 117))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                            .addContainerGap()
+                            .addComponent(jLabel2)
+                            .addGap(18, 18, 18)
+                            .addComponent(FromTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(ToTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(136, 136, 136))
+                        .addGroup(layout.createSequentialGroup()
+                            .addContainerGap()
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(jLabel5)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(PriceTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(jLabel6)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(TrainComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(AddJourneyBtn)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(DeleteBtn)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(UpdateBtn)))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(layout.createSequentialGroup()
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                    .addContainerGap()
+                                    .addComponent(jLabel1)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(DateTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 390, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGap(4, 4, 4)
+                                    .addComponent(jLabel3)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(StartTimeTextField)))
+                            .addGap(117, 117, 117)))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 542, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
                 .addComponent(AddTrainBtn)
                 .addContainerGap(34, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jLabel8)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(DistanceTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -294,16 +327,11 @@ public class JourneysTableForm_Admin extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
                     .addComponent(TrainComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(DurationTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(DistanceTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(5, 5, 5)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(5, 5, 5)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(DistanceTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(PriceTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -325,7 +353,7 @@ public class JourneysTableForm_Admin extends javax.swing.JFrame {
 
     private void AddJourneyBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddJourneyBtnActionPerformed
            //Check if there is any empty text field to show warning message
-        if(DateTextField.getText().equals("")||StartTimeTextField.getText().equals("")||FromTextField.getText().equals("")||ToTextField.getText().equals("")||PriceTextField.getText().equals("")||DurationTextField.getText().equals("")||DistanceTextField.getText().equals("")){
+        if(DateTextField.getText().equals("")||StartTimeTextField.getText().equals("")||FromTextField.getText().equals("")||ToTextField.getText().equals("")||PriceTextField.getText().equals("")||DistanceTextField.getText().equals("")){
            
            JOptionPane.showMessageDialog(this, "Please Enter all the data");
            
@@ -362,7 +390,7 @@ public class JourneysTableForm_Admin extends javax.swing.JFrame {
        else{
            JOptionPane.showMessageDialog(this, "please select just one row");
        }}
-        
+       
        
     }//GEN-LAST:event_DeleteBtnActionPerformed
 
@@ -398,7 +426,6 @@ public class JourneysTableForm_Admin extends javax.swing.JFrame {
         ToTextField.setText(From_To[1]);
         TrainComboBox.setSelectedItem("T"+String.valueOf(tm.getValueAt(JTable.getSelectedRow(),3)));
         DistanceTextField.setText(String.valueOf(tm.getValueAt(JTable.getSelectedRow(),4)).replace("Km",""));
-        DurationTextField.setText(String.valueOf(tm.getValueAt(JTable.getSelectedRow(),5)).replace("H",""));
         PriceTextField.setText(String.valueOf(tm.getValueAt(JTable.getSelectedRow(),6)).replace("$",""));
         
     }//GEN-LAST:event_JTableMouseClicked
@@ -411,6 +438,7 @@ public class JourneysTableForm_Admin extends javax.swing.JFrame {
         this.setVisible(false);
         Gui1.setNewTrainForm();
         Gui1.getTrainForm().setVisible(true);
+       
     }//GEN-LAST:event_AddTrainBtnActionPerformed
 
     private void DistanceTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DistanceTextFieldActionPerformed
@@ -418,8 +446,30 @@ public class JourneysTableForm_Admin extends javax.swing.JFrame {
     }//GEN-LAST:event_DistanceTextFieldActionPerformed
 
     private void TrainComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TrainComboBoxActionPerformed
-        
+
     }//GEN-LAST:event_TrainComboBoxActionPerformed
+
+    private void TrainComboBoxMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TrainComboBoxMouseClicked
+               Train train= getSelectedTrain();
+                JOptionPane.showMessageDialog(this, train.toString());
+        
+    }//GEN-LAST:event_TrainComboBoxMouseClicked
+
+    private void TrainComboBoxMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TrainComboBoxMousePressed
+  
+    }//GEN-LAST:event_TrainComboBoxMousePressed
+
+    private void TrainComboBoxItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_TrainComboBoxItemStateChanged
+        
+    }//GEN-LAST:event_TrainComboBoxItemStateChanged
+
+    private void TrainComboBoxComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_TrainComboBoxComponentShown
+        
+    }//GEN-LAST:event_TrainComboBoxComponentShown
+
+    private void TrainComboBoxFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_TrainComboBoxFocusGained
+        
+    }//GEN-LAST:event_TrainComboBoxFocusGained
 
    
     
@@ -467,7 +517,6 @@ public class JourneysTableForm_Admin extends javax.swing.JFrame {
     private javax.swing.JTextField DateTextField;
     private javax.swing.JButton DeleteBtn;
     private javax.swing.JTextField DistanceTextField;
-    private javax.swing.JTextField DurationTextField;
     private javax.swing.JTextField FromTextField;
     private javax.swing.JTable JTable;
     private javax.swing.JTextField PriceTextField;
@@ -481,7 +530,6 @@ public class JourneysTableForm_Admin extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables

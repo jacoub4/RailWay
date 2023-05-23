@@ -53,7 +53,7 @@ public class Service implements Serializable {
 
     @Override
     public String toString() {                                                      //might need changes 
-        return "Service{" + "wifi=" + wifi + "\n Meal=" + Meal + "\nDrinks=" + Drink + "\n screens=" + screens + '}';
+        return "Wifi: " + wifi + "\n Meal: " + Meal + "\nDrink:" + Drink + "\n screens=" + screens + '}';
     }
     
      

@@ -42,7 +42,7 @@ public class Engine implements Serializable{
 
     @Override
     public String toString() {
-        return "Engine{" + "ID=" + ID + "\n type=" + type + "\n dist_traveled=" + dist_traveled + '}';
+        return  "ID:" + ID + "\nType: " + type + "\nTraveled Distance: " + dist_traveled ;
     }
     
 }
