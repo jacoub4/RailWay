@@ -30,16 +30,16 @@ public class AdminLogin extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        password = new javax.swing.JPasswordField();
+        pass = new javax.swing.JPasswordField();
         jLabel1 = new javax.swing.JLabel();
         btb = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
 
-        password.addActionListener(new java.awt.event.ActionListener() {
+        pass.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                passwordActionPerformed(evt);
+                passActionPerformed(evt);
             }
         });
 
@@ -63,7 +63,7 @@ public class AdminLogin extends javax.swing.JFrame {
                         .addComponent(jLabel1))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(114, 114, 114)
-                        .addComponent(password, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(pass, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(141, 141, 141)
                         .addComponent(btb)))
@@ -75,7 +75,7 @@ public class AdminLogin extends javax.swing.JFrame {
                 .addContainerGap(82, Short.MAX_VALUE)
                 .addComponent(jLabel1)
                 .addGap(71, 71, 71)
-                .addComponent(password, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(pass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(56, 56, 56)
                 .addComponent(btb)
                 .addGap(32, 32, 32))
@@ -85,12 +85,12 @@ public class AdminLogin extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void passwordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordActionPerformed
+    private void passActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_passwordActionPerformed
+    }//GEN-LAST:event_passActionPerformed
 
     private void btbActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btbActionPerformed
-           if(String.valueOf(password.getPassword()).equals("123")){
+           if(String.valueOf(pass.getPassword()).equals("123")){
                this.setVisible(false);
                Gui1.setJournForm();
                Gui1.getJrounForm().setVisible(true);
@@ -138,6 +138,6 @@ public class AdminLogin extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btb;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JPasswordField password;
+    private javax.swing.JPasswordField pass;
     // End of variables declaration//GEN-END:variables
 }
