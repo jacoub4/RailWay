@@ -20,6 +20,7 @@ public class Gui1 {
     private static CurrentClientForm c1;
     private static AddTrainForm T1;
     private static GoldenClientInfo GI;
+    private static AdminLogin AL;
 public  static ArrayList<Client>ClientsList=new ArrayList<>();
 public static ArrayList<Journey>journeysList=new ArrayList<>();
 public static ArrayList<Train>TrainsList=new ArrayList<>();
@@ -47,7 +48,12 @@ public static void SaveTrainsToDataBase(){
         }
 }
 
-
+public static void setAdminLoginForm(){
+    AL=new AdminLogin();
+}
+public AdminLogin getAdminLoginForm(){
+    return AL;
+}
 public static void setGoldenClientInfo(){
     GI=new GoldenClientInfo();
 }

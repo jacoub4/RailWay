@@ -98,12 +98,8 @@ public static int ID=0;
     private void adminbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adminbtnActionPerformed
         
         this.setVisible(false);
-        try{
-        Gui1.setJournForm();                                                        // هبد 
-        Gui1.getJrounForm().setVisible(true);}
-        catch(NullPointerException e){
-            System.out.println("Journey form failed");
-        }
+        Gui1.setAdminLoginForm();
+        
         
     }//GEN-LAST:event_adminbtnActionPerformed
 
