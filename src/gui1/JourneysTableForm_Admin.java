@@ -42,6 +42,7 @@ public class JourneysTableForm_Admin extends javax.swing.JFrame {
         }
         catch(Exception e){
         e.printStackTrace();}
+        
     }
     public Train getSelectedTrain(){
         

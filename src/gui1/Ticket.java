@@ -67,10 +67,13 @@ public class Ticket {
     
     public void reserveTicket(Journey J1,Train T1){                    /// note Done yet
         setDate(J1.getDate());
-    
-    
-    
     }
+
+    @Override
+    public String toString() {
+        return  "Discount: " + Discount*100 +"%"+ ",\nID: " + ID + "\nprice: " + price + "\nfinalPrice: " + finalPrice ;
+    }
+    
     
     
     

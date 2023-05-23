@@ -16,11 +16,14 @@ import javax.swing.table.DefaultTableModel;;
 
 public class JourneysTableForm_Client extends javax.swing.JFrame {
     Journey journey;
+    Ticket ticket;
+    Train train;
     Client CurrentClient;
   private DefaultTableModel tm; 
     public JourneysTableForm_Client() {
         initComponents();
         initTableData();
+        
         
     }
     
@@ -38,7 +41,8 @@ public class JourneysTableForm_Client extends javax.swing.JFrame {
         CI.add("Price");
         tm=(DefaultTableModel)JourneyTable.getModel();
         journey=new Journey();
-       
+        ticket=new Ticket();
+        train=new Train();
     
  try{
         FileInputStream fs=new FileInputStream("JourneyTable");
@@ -65,8 +69,28 @@ public class JourneysTableForm_Client extends javax.swing.JFrame {
         return journey;
     }
     
+    public Ticket getTicketDetials(){
+        ticket.setID(CurrentClient.getID()+100);
+        ticket.setPrice(Double.parseDouble(tm.getValueAt(JourneyTable.getSelectedRow(),6).toString().replace("$","")));
+        if(CurrentClient.isPensioner()){
+           ticket.setDiscount(0.2);
+        }
+        else if (CurrentClient.getAge()>70){
+            ticket.setDiscount(0.5);
+        }
+        else{
+        ticket.setDiscount(0);
+        }
+        ticket.setFinalPrice(ticket.getPrice()*ticket.getDiscount());
+    return ticket;
+    }
     public void getTrainDetails(){
-        
+        for(Train t:Gui1.TrainsList){
+            if(t.getTrainNum()==Integer.parseInt(tm.getValueAt(JourneyTable.getSelectedRow(), 3).toString())){
+                train=t;
+            break;}
+                
+        }
     }
     
     
@@ -159,12 +183,16 @@ public class JourneysTableForm_Client extends javax.swing.JFrame {
             System.out.println(getJourneyDetails().toString());
             CurrentClient.setNtravels(CurrentClient.getNtravels()+1);
             CurrentClient.setTraveledDistance(CurrentClient.getTraveledDistance()+Distance);
+            getTicketDetials();
+            getTrainDetails();
+            JOptionPane.showMessageDialog(this,"Ticket Info :\nDate: "+String.valueOf(tm.getValueAt(JourneyTable.getSelectedRow(),0))+"\n"+ticket.toString()+"\n"+train.getService().toString());
             if(CurrentClient.getNtravels()>50|| CurrentClient.getTraveledDistance()>10000){
                 CurrentClient=(Golden_client)CurrentClient;
                 //add form to show him that he is a golden client right now and take the info form him
             }
+   //         CurrentClient.buyTicket();
             Gui1.SaveClientsToDataBase();
-            JOptionPane.showMessageDialog(this, "");
+            
             Gui1.seats++;
             if(Gui1.seats==3){
                 for(Train train1:Gui1.TrainsList){

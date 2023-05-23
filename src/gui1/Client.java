@@ -99,7 +99,7 @@ this.password=password;
 public void TakeTrain(Train tr1){                                                   // not Done yet !!
 //tr1.performJourney();
 }
-public void buyTicket(String t1){                                                   // not done yet!! (don't forget to change String to Ticket after making the class)
+public void buyTicket(Ticket ticket){                                                   // not done yet!! (don't forget to change String to Ticket after making the class)
 
 }
     

@@ -11,7 +11,8 @@ public class Train implements Serializable{
     private double speed;
     Service service;
     Engine engine;
-    
+    private boolean NeedOil;
+    private boolean NeedMaintenance;
     Train(){}
     Train(int num,String type,double speed,Service S1,Engine g){}
 
@@ -46,6 +47,23 @@ public class Train implements Serializable{
         this.service=service;
     }
 
+    public boolean getNeedOil() {
+        return NeedOil;
+    }
+
+    public void setNeedOil(boolean p) {
+        this.NeedOil = p;
+    }
+
+    public boolean getNeedMaintenance() {
+        return NeedMaintenance;
+    }
+
+    public void setNeedMaintenance(boolean p) {
+        this.NeedMaintenance = p;
+    }
+
+    
    
 
     public Engine getEngine() {
