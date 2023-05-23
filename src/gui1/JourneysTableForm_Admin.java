@@ -56,6 +56,12 @@ public class JourneysTableForm_Admin extends javax.swing.JFrame {
     public void PrepareTrainsComboBox(){
         TrainComboBox.removeAllItems();
         for(Train train:Gui1.TrainsList){
+            if(train.getNeedMaintenance()){
+                JOptionPane.showMessageDialog(this,"Train"+train.engine.getID()+"Need maintenance and need to change oil");
+            }
+            if(train.getNeedOil()){
+                JOptionPane.showMessageDialog(this,"Train"+train.engine.getID()+"Need to change Oil");
+            }
         TrainComboBox.addItem("T"+train.getTrainNum());
         }
     }

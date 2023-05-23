@@ -18,7 +18,8 @@ public class Gui1 {
     private static JourneysTableForm_Admin JA;
     private static JourneysTableForm_Client JC; 
     private static CurrentClientForm c1;
-    private static  AddTrainForm T1;
+    private static AddTrainForm T1;
+    private static GoldenClientInfo GI;
 public  static ArrayList<Client>ClientsList=new ArrayList<>();
 public static ArrayList<Journey>journeysList=new ArrayList<>();
 public static ArrayList<Train>TrainsList=new ArrayList<>();
@@ -47,7 +48,12 @@ public static void SaveTrainsToDataBase(){
 }
 
 
-
+public static void setGoldenClientInfo(){
+    GI=new GoldenClientInfo();
+}
+public static GoldenClientInfo getGoldenClientInfo(){
+    return GI;
+}
 public static void setNewClientForm(){
    N1= new AddClientForm();
 }

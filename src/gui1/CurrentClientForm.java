@@ -6,8 +6,7 @@ import javax.swing.JOptionPane;
 
 
 public class CurrentClientForm extends javax.swing.JFrame {
-
-    boolean b=false;
+    
     public CurrentClientForm() {
         initComponents();
     }

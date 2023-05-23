@@ -144,22 +144,23 @@ public class JourneysTableForm_Client extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 518, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(89, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(BookingBtn)
-                .addGap(22, 22, 22))
+                .addContainerGap(65, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(BookingBtn)
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 518, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(36, 36, 36))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(24, 24, 24)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(BookingBtn)
-                .addContainerGap(27, Short.MAX_VALUE))
+                .addContainerGap(15, Short.MAX_VALUE))
         );
 
         pack();
@@ -188,9 +189,14 @@ public class JourneysTableForm_Client extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this,"Ticket Info :\nDate: "+String.valueOf(tm.getValueAt(JourneyTable.getSelectedRow(),0))+"\n"+ticket.toString()+"\n"+train.getService().toString());
             if(CurrentClient.getNtravels()>50|| CurrentClient.getTraveledDistance()>10000){
                 CurrentClient=(Golden_client)CurrentClient;
-                //add form to show him that he is a golden client right now and take the info form him
+                this.setVisible(false);
+                Gui1.setGoldenClientInfo();
+                Gui1.getGoldenClientInfo().setCurrentClient((Golden_client)CurrentClient);
             }
-   //         CurrentClient.buyTicket();
+            else{
+            this.setVisible(false);
+            Gui1.getStartup().setVisible(true);
+            }
             Gui1.SaveClientsToDataBase();
             
             Gui1.seats++;
@@ -198,6 +204,12 @@ public class JourneysTableForm_Client extends javax.swing.JFrame {
                 for(Train train1:Gui1.TrainsList){
                     if(train1.getTrainNum()==Double.parseDouble(String.valueOf(tm.getValueAt(JourneyTable.getSelectedRow(),3)))){
                     train1.engine.setDist_traveled(train1.engine.getDist_traveled()+Distance);
+                    if(train1.engine.getDist_traveled()>20000){
+                        train1.setNeedOil(true);
+                    }
+                    if(train1.engine.getDist_traveled()>100000){
+                        train1.setNeedMaintenance(true);
+                    }
                     Gui1.SaveTrainsToDataBase();
                     Gui1.seats=0;
                     break;

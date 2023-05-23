@@ -161,7 +161,7 @@ public class AddClientForm extends javax.swing.JFrame {
        Current_Client.setID(Gui1.ClientsList.size());
        
        if(setAge()){
-                   Gui1.SaveClientsToDataBase();
+          Gui1.SaveClientsToDataBase();
         this.setVisible(false);
         Gui1.getStartup().setVisible(true);}
        else{

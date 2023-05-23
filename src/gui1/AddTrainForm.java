@@ -216,14 +216,7 @@ public class AddTrainForm extends javax.swing.JFrame {
         System.out.println(Gui1.TrainsList);                                    //  delete later
         //serializing the Data
 
-        try (FileOutputStream fs = new FileOutputStream("Trains.ser");
-             ObjectOutputStream os = new ObjectOutputStream(fs)){
-            os.writeObject(Gui1.TrainsList);
-            os.close();
-            fs.close();
-        } catch (IOException e) {
-                        System.out.println("Failed to save data of the train");     
-        }
+        Gui1.SaveTrainsToDataBase();
         this.setVisible(false);
         Gui1.getJrounForm().PrepareTrainsComboBox();
         Gui1.getJrounForm().setVisible(true);
