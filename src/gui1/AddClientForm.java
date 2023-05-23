@@ -161,14 +161,7 @@ public class AddClientForm extends javax.swing.JFrame {
        Current_Client.setID(Gui1.ClientsList.size());
        
        if(setAge()){
-                   try (FileOutputStream fs = new FileOutputStream("Clients.ser");
-             ObjectOutputStream os = new ObjectOutputStream(fs)) {
-            os.writeObject(Gui1.ClientsList);
-            os.close();
-            fs.close();
-        } catch (IOException e) {
-             System.out.println("Error44");                 
-        }
+                   Gui1.SaveClientsToDataBase();
         this.setVisible(false);
         Gui1.getStartup().setVisible(true);}
        else{

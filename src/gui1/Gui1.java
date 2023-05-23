@@ -2,14 +2,17 @@
 package gui1;
 
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInput;
 import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
 
 
 public class Gui1 {
+    public static int seats;
     private static StartupForm S1;
     private static AddClientForm N1;
     private static JourneysTableForm_Admin JA;
@@ -20,6 +23,31 @@ public  static ArrayList<Client>ClientsList=new ArrayList<>();
 public static ArrayList<Journey>journeysList=new ArrayList<>();
 public static ArrayList<Train>TrainsList=new ArrayList<>();
    
+
+public static void SaveClientsToDataBase(){
+      try (FileOutputStream fs = new FileOutputStream("Clients.ser");
+             ObjectOutputStream os = new ObjectOutputStream(fs)) {
+            os.writeObject(Gui1.ClientsList);
+            os.close();
+            fs.close();
+        } catch (IOException e) {
+             System.out.println("Error44");                 
+        }
+}
+
+public static void SaveTrainsToDataBase(){
+    try (FileOutputStream fs = new FileOutputStream("Trains.ser");
+             ObjectOutputStream os = new ObjectOutputStream(fs)){
+            os.writeObject(Gui1.TrainsList);
+            os.close();
+            fs.close();
+        } catch (IOException e) {
+                        System.out.println("Failed to save data of the train");     
+        }
+}
+
+
+
 public static void setNewClientForm(){
    N1= new AddClientForm();
 }

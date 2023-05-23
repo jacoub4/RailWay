@@ -56,6 +56,23 @@ public class Journey {
         this.Km_Covered = Km_Covered;
     }
 
+    public void setStartStation(String StartStation) {
+        this.StartStation = StartStation;
+    }
+
+    public String getStartStation() {
+        return StartStation;
+    }
+    
+
+    public void setDistination(String Distination) {
+        this.Distination = Distination;
+    }
+    public String getDistination() {
+        return Distination;
+    }
+    
+
     
 
     @Override

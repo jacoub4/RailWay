@@ -32,6 +32,10 @@ public class Golden_client extends Client{
         this.favStation = favStation;
     }
 
+   
+    
+    
+
     @Override
     public String toString() { // need some changes !!
         super.toString();

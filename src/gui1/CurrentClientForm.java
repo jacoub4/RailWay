@@ -107,6 +107,7 @@ public class CurrentClientForm extends javax.swing.JFrame {
             {
                 Gui1.setClientJounrForm();
                 this.setVisible(false);
+               Gui1.getClientJournForm().setCurrentClient(Gui1.ClientsList.get(i));
                Gui1.getClientJournForm().setVisible(true);
             }
             else

@@ -6,6 +6,8 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.text.DateFormat;
+import java.util.GregorianCalendar;
 import java.util.Vector;
 import javax.swing.JOptionPane;
 
@@ -13,12 +15,17 @@ import javax.swing.table.DefaultTableModel;;
 
 
 public class JourneysTableForm_Client extends javax.swing.JFrame {
-
+    Journey journey;
+    Client CurrentClient;
   private DefaultTableModel tm; 
     public JourneysTableForm_Client() {
         initComponents();
         initTableData();
         
+    }
+    
+    public void setCurrentClient(Client c){
+        CurrentClient=c;
     }
     public void initTableData(){
         Vector CI=new Vector();
@@ -30,6 +37,8 @@ public class JourneysTableForm_Client extends javax.swing.JFrame {
         CI.add("Duration");
         CI.add("Price");
         tm=(DefaultTableModel)JourneyTable.getModel();
+        journey=new Journey();
+       
     
  try{
         FileInputStream fs=new FileInputStream("JourneyTable");
@@ -43,12 +52,36 @@ public class JourneysTableForm_Client extends javax.swing.JFrame {
      System.out.println("Error in JourneyTable for clients");
 }   
     }
+    
+    public Journey getJourneyDetails(){
+        int SelectedRow=JourneyTable.getSelectedRow();
+        String From_To[]= String.valueOf(tm.getValueAt(SelectedRow,2)).split("/");
+        //Need to assign
+        journey.setStartTime(Double.parseDouble(String.valueOf(tm.getValueAt(SelectedRow,1))));
+        journey.setStartStation(From_To[0]);
+        journey.setDistination(From_To[1]);
+        journey.setKm_Covered(Double.parseDouble(String.valueOf(tm.getValueAt(SelectedRow, 4)).replace("Km","")));
+        journey.setDuration(Double.parseDouble(String.valueOf(tm.getValueAt(SelectedRow, 5)).replace("H","")));
+        return journey;
+    }
+    
+    public void getTrainDetails(){
+        
+    }
+    
+    
+    
+    
+    
+    
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         JourneyTable = new javax.swing.JTable();
+        BookingBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -75,6 +108,13 @@ public class JourneysTableForm_Client extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(JourneyTable);
 
+        BookingBtn.setText("Book Journey");
+        BookingBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BookingBtnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -82,14 +122,20 @@ public class JourneysTableForm_Client extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 518, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(37, Short.MAX_VALUE))
+                .addContainerGap(89, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(BookingBtn)
+                .addGap(22, 22, 22))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(42, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(BookingBtn)
+                .addContainerGap(27, Short.MAX_VALUE))
         );
 
         pack();
@@ -100,6 +146,41 @@ public class JourneysTableForm_Client extends javax.swing.JFrame {
        
 
     }//GEN-LAST:event_JourneyTableMouseClicked
+
+    private void BookingBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BookingBtnActionPerformed
+        if(JourneyTable.getSelectedRowCount()==0){
+            JOptionPane.showMessageDialog(this,"Please select a Journey to book");
+        }
+        else if(JourneyTable.getSelectedRowCount()>1){
+            JOptionPane.showMessageDialog(this, "Please select Just one Journey");
+        }
+        else{
+            double Distance=Double.parseDouble(tm.getValueAt(JourneyTable.getSelectedRow(),4).toString().replace("Km", ""));
+            System.out.println(getJourneyDetails().toString());
+            CurrentClient.setNtravels(CurrentClient.getNtravels()+1);
+            CurrentClient.setTraveledDistance(CurrentClient.getTraveledDistance()+Distance);
+            if(CurrentClient.getNtravels()>50|| CurrentClient.getTraveledDistance()>10000){
+                CurrentClient=(Golden_client)CurrentClient;
+                //add form to show him that he is a golden client right now and take the info form him
+            }
+            Gui1.SaveClientsToDataBase();
+            JOptionPane.showMessageDialog(this, "");
+            Gui1.seats++;
+            if(Gui1.seats==3){
+                for(Train train1:Gui1.TrainsList){
+                    if(train1.getTrainNum()==Double.parseDouble(String.valueOf(tm.getValueAt(JourneyTable.getSelectedRow(),3)))){
+                    train1.engine.setDist_traveled(train1.engine.getDist_traveled()+Distance);
+                    Gui1.SaveTrainsToDataBase();
+                    Gui1.seats=0;
+                    break;
+                    }
+                }
+                
+            }
+            
+        }
+        
+    }//GEN-LAST:event_BookingBtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -137,6 +218,7 @@ public class JourneysTableForm_Client extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton BookingBtn;
     private javax.swing.JTable JourneyTable;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
