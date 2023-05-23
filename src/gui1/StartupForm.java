@@ -99,7 +99,7 @@ public static int ID=0;
         
         this.setVisible(false);
         Gui1.setAdminLoginForm();
-        
+        Gui1.getAdminLoginForm().setVisible(true);
         
     }//GEN-LAST:event_adminbtnActionPerformed
 

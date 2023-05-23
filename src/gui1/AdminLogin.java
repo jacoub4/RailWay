@@ -6,6 +6,7 @@
 package gui1;
 
 import javafx.scene.input.KeyCode;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -34,6 +35,7 @@ public class AdminLogin extends javax.swing.JFrame {
         btb = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
         password.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -80,6 +82,7 @@ public class AdminLogin extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void passwordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordActionPerformed
@@ -89,7 +92,11 @@ public class AdminLogin extends javax.swing.JFrame {
     private void btbActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btbActionPerformed
            if(String.valueOf(password.getPassword()).equals("123")){
                this.setVisible(false);
+               Gui1.setJournForm();
                Gui1.getJrounForm().setVisible(true);
+           }
+           else{
+               JOptionPane.showMessageDialog(this,"Please enter the correct password");
            }
     }//GEN-LAST:event_btbActionPerformed
 

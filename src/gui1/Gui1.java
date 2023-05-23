@@ -51,7 +51,7 @@ public static void SaveTrainsToDataBase(){
 public static void setAdminLoginForm(){
     AL=new AdminLogin();
 }
-public AdminLogin getAdminLoginForm(){
+public static AdminLogin getAdminLoginForm(){
     return AL;
 }
 public static void setGoldenClientInfo(){
