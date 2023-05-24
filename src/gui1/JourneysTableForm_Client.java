@@ -188,18 +188,47 @@ public class JourneysTableForm_Client extends javax.swing.JFrame {
         else{
             //get the value of Distance from the table 
             double Distance=Double.parseDouble(tm.getValueAt(JourneyTable.getSelectedRow(),4).toString().replace("Km", ""));
+            
             System.out.println(getJourneyDetails().toString());
-           //renewing data of clien
+           //renewing data of client
             CurrentClient.setNtravels(CurrentClient.getNtravels()+1);
             CurrentClient.setTraveledDistance(CurrentClient.getTraveledDistance()+Distance);
+            
             //assign details of ticket and train
             getTicketDetials();
             getTrainDetails();
-            //show Ticket with details Screen
-            Gui1.SaveClientsToDataBase();
-            Gui1.SaveTrainsToDataBase();
+                
+            //save tweekings to DataBase
+           if(CurrentClient.isGolden()){
+               Gui1.SaveGoldenClientsToDataBase();
+           }else{
+            Gui1.SaveClientsToDataBase();}
+            
+            //Show Ticket info to client
             JOptionPane.showMessageDialog(this,"Ticket Info :\nDate: "+String.valueOf(tm.getValueAt(JourneyTable.getSelectedRow(),0))+"\n"+ticket.toString()+"\n"+train.getService().toString());
-            //Check if he is now a golden client or not
+           
+            System.out.println(Gui1.ClientsList);
+                System.out.println("I should see you");
+                
+                //increase booked seats by one
+           train.setSeats(train.getSeats()+1);
+                System.out.println("Seats Number now is :"+train.getSeats());
+                //is it Time to take off?
+            if(train.getSeats()==3){
+                train.setSeats(0);  //reset booked seats number
+                //increase traveled distance
+                    train.engine.setDist_traveled(train.engine.getDist_traveled()+Distance);
+                    
+                    if(train.engine.getDist_traveled()>20000){
+                        train.setNeedOil(true);
+                    }
+                    if(train.engine.getDist_traveled()>100000){
+                        train.setNeedMaintenance(true);
+                    }
+                    Gui1.SaveTrainsToDataBase();
+            }
+
+//Check if he is now a golden client or not
             
             if((CurrentClient.getNtravels()>50|| CurrentClient.getTraveledDistance()>10000)&&CurrentClient.isGolden()==false){
                 golden=new Golden_client(CurrentClient,"","");
@@ -210,37 +239,11 @@ public class JourneysTableForm_Client extends javax.swing.JFrame {
                 Gui1.setGoldenClientInfo();
                 Gui1.getGoldenClientInfo().setCurrentClient(golden);
                 Gui1.getGoldenClientInfo().setVisible(true);
-            }
-            else{
-            System.out.println(Gui1.ClientsList);
-                System.out.println("I should see you");
-           train.setSeats(train.getSeats()+1);
-                System.out.println("Seats Number now is :"+train.getSeats());
-            if(train.getSeats()==3){
-                train.setSeats(0);
-                for(Train train1:Gui1.TrainsList){
-                    if(train1.getTrainNum()==train.getTrainNum()){
-                    train1.engine.setDist_traveled(train1.engine.getDist_traveled()+Distance);
-                    if(train1.engine.getDist_traveled()>20000){
-                        train1.setNeedOil(true);
-                    }
-                    if(train1.engine.getDist_traveled()>100000){
-                        train1.setNeedMaintenance(true);
-                    }
-                    Gui1.SaveTrainsToDataBase();
-                    
-                    break;
-                    }
-                }
-                
-            }
-            Gui1.SaveTrainsToDataBase();
-            
+            }else{
+            this.setVisible(false);                                            
+            Gui1.getStartup().setVisible(true);
         }
-//            this.setVisible(false);                                             // check if you will need them or not
-//            Gui1.getStartup().setVisible(true);
         }
-        
     }//GEN-LAST:event_BookingBtnActionPerformed
 
     /**

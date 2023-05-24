@@ -79,7 +79,7 @@ public static StartupForm getStartup(){
 }
 public static AddClientForm getAddingClient(){
     return N1;
-}                                                                                                   //think about adding current client object here!! (it's a static variable to know which client data we need right now ...might get used in journeytable and also in ading new client)
+}                                                                                                  
 public static JourneysTableForm_Admin getJrounForm(){
     return JA;
 }
