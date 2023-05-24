@@ -127,7 +127,7 @@ c1=new CurrentClientForm();
                     System.out.println(ClientsList);
                 }
                 catch(IOException | ClassNotFoundException e){
-                    e.printStackTrace();
+                    System.out.println("empty clients folder");
                 }
                 
                 
@@ -139,7 +139,7 @@ c1=new CurrentClientForm();
                     System.out.println(golden_clientsList);
                 }
                 catch(IOException | ClassNotFoundException e){
-                    e.printStackTrace();
+                    System.out.println("Empty golden client folder");
                 }
                 
                 
@@ -152,7 +152,7 @@ c1=new CurrentClientForm();
                     System.out.println(TrainsList);
                 }
                 catch(ClassNotFoundException | IOException e){
-                    e.printStackTrace();
+                    System.out.println("Emty trains folder");
                 }
                 
             }
