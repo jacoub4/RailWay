@@ -61,8 +61,16 @@ public class Ticket {
         return finalPrice;
     }
 
-    public void setFinalPrice(double finalPrice) {
-        this.finalPrice = finalPrice;
+    public void setFinalPrice(){
+        if(getDiscount()==0){
+            this.finalPrice=getPrice();
+        }
+        else{
+        this.finalPrice = getDiscount()*getPrice();
+        }
+    }
+    public void setFinalPrice(double price){
+        this.finalPrice=price;
     }
     
     public void reserveTicket(Journey J1,Train T1){                    /// note Done yet

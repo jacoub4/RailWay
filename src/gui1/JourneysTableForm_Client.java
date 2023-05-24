@@ -2,12 +2,8 @@
 package gui1;
 
 import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.text.DateFormat;
-import java.util.GregorianCalendar;
 import java.util.Vector;
 import javax.swing.JOptionPane;
 
@@ -24,13 +20,19 @@ public class JourneysTableForm_Client extends javax.swing.JFrame {
     public JourneysTableForm_Client() {
         initComponents();
         initTableData();
-        
+
         
     }
     
-    public void setCurrentClient(Client c){
-        CurrentClient=c;
+    public void setCurrentClient(Object A){
+        if(A instanceof Golden_client){
+        golden=(Golden_client)A;
+        CurrentClient=golden;}
+        else{
+            CurrentClient=(Client)A;
+        }
     }
+   
     public void initTableData(){
         Vector CI=new Vector();
         CI.add("Date");
@@ -77,14 +79,36 @@ public class JourneysTableForm_Client extends javax.swing.JFrame {
         ticket.setPrice(Double.parseDouble(tm.getValueAt(JourneyTable.getSelectedRow(),6).toString().replace("$","")));
         if(CurrentClient.isPensioner()){
            ticket.setDiscount(0.2);
+           ticket.setFinalPrice();
         }
         else if (CurrentClient.getAge()>70){
             ticket.setDiscount(0.5);
+            ticket.setFinalPrice();
         }
         else{
+            try{
+            if(golden.isGolden()){
+                String From_to[]=tm.getValueAt(JourneyTable.getSelectedRow(),2).toString().split("/");
+                //Check if he is traveling on his birthday
+                if((tm.getValueAt(JourneyTable.getSelectedRow(),0).toString()).equals(golden.getBirthDate())){
+                   ticket.setDiscount(1);
+                   ticket.setFinalPrice(0);
+                    }
+                //check if it's his favourite station
+                else if(From_to[1].equals(golden.getFavStation())){
+                    ticket.setDiscount(0.5);
+                    ticket.setFinalPrice();
+                }
+                else{
+                    ticket.setDiscount(0.2);
+                    ticket.setFinalPrice();
+                }
+            }}
+            catch(NullPointerException e){
         ticket.setDiscount(0);
+        ticket.setFinalPrice();
         }
-        ticket.setFinalPrice(ticket.getPrice()*ticket.getDiscount());
+        }
     return ticket;
     }
     
