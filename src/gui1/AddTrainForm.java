@@ -4,6 +4,7 @@ package gui1;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
+import javax.swing.JOptionPane;
 
 
 public class AddTrainForm extends javax.swing.JFrame {
@@ -189,7 +190,13 @@ public class AddTrainForm extends javax.swing.JFrame {
     }//GEN-LAST:event_ScreenCheckActionPerformed
 
     private void ApplyBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ApplyBtnActionPerformed
-        //put servise attributes 
+        
+
+        if(SpeedTextField.getText().equals("")){
+            JOptionPane.showMessageDialog(this,"please Enter all the data");
+        }
+        else{
+//put servise attributes 
         train.setService(getServiceDetails());
         //put Engine Details
         engine.setType(String.valueOf(EngineComboBox.getSelectedItem()));
@@ -221,7 +228,7 @@ public class AddTrainForm extends javax.swing.JFrame {
         Gui1.getJrounForm().PrepareTrainsComboBox();
         Gui1.getJrounForm().setVisible(true);
         
-        
+        }
         
     }//GEN-LAST:event_ApplyBtnActionPerformed
 
