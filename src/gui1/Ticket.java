@@ -79,7 +79,7 @@ public class Ticket {
 
     @Override
     public String toString() {
-        return  "Discount: " + Discount*100 +"%"+ ",\nID: " + ID + "\nprice: " + price + "\nfinalPrice: " + finalPrice ;
+        return  "Discount: " + Discount*100 +"%"+ ",\nID: " + ID + "\nprice: " + price + "\nfinalPrice: " + Math.round(finalPrice*100.0)/100.0 ;
     }
     
     
