@@ -15,6 +15,14 @@ public class Golden_client extends Client{
         this.BirthDate = BirthDate;
         this.favStation = favStation;
     }
+    
+    public Golden_client(Client client, String birthDate, String favStation) {
+        super(client.getName(),client.getAge(), client.getID(),client.getAdress(), client.isPensioner(), client.getNtravels(), client.getTraveledDistance(),client.getPassword());
+        this.BirthDate = birthDate;
+        this.favStation = favStation;
+        
+    }
+    
 
     public String getBirthDate() {
         return BirthDate;
@@ -31,15 +39,18 @@ public class Golden_client extends Client{
     public void setFavStation(String favStation) {
         this.favStation = favStation;
     }
-
-   
+    
+    @Override
+    public boolean isGolden(){
+        return true;
+    }
     
     
 
     @Override
     public String toString() { // need some changes !!
         super.toString();
-        return "Golden_client{" + "BirthDate=" + BirthDate + ", favStation=" + favStation + '}';
+        return "Golden_client{" +"Name :"+super.getName()+ "BirthDate=" + BirthDate + ", favStation=" + favStation +"password: "+super.getPassword()+"Travels number: "+getNtravels();
     }
     
     

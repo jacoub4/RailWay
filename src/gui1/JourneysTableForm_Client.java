@@ -19,6 +19,7 @@ public class JourneysTableForm_Client extends javax.swing.JFrame {
     Ticket ticket;
     Train train;
     Client CurrentClient;
+    Golden_client golden;                                   //will be used if he became golden client
   private DefaultTableModel tm; 
     public JourneysTableForm_Client() {
         initComponents();
@@ -199,11 +200,16 @@ public class JourneysTableForm_Client extends javax.swing.JFrame {
             Gui1.SaveTrainsToDataBase();
             JOptionPane.showMessageDialog(this,"Ticket Info :\nDate: "+String.valueOf(tm.getValueAt(JourneyTable.getSelectedRow(),0))+"\n"+ticket.toString()+"\n"+train.getService().toString());
             //Check if he is now a golden client or not
-            if(CurrentClient.getNtravels()>50|| CurrentClient.getTraveledDistance()>10000){
-                CurrentClient=(Golden_client)CurrentClient;
+            
+            if((CurrentClient.getNtravels()>50|| CurrentClient.getTraveledDistance()>10000)&&CurrentClient.isGolden()==false){
+                golden=new Golden_client(CurrentClient,"","");
+                Gui1.golden_clientsList.add(golden);
+                Gui1.ClientsList.remove(CurrentClient);
+                Gui1.SaveClientsToDataBase();
                 this.setVisible(false);
                 Gui1.setGoldenClientInfo();
-                Gui1.getGoldenClientInfo().setCurrentClient((Golden_client)CurrentClient);
+                Gui1.getGoldenClientInfo().setCurrentClient(golden);
+                Gui1.getGoldenClientInfo().setVisible(true);
             }
             else{
             System.out.println(Gui1.ClientsList);
@@ -211,6 +217,7 @@ public class JourneysTableForm_Client extends javax.swing.JFrame {
            train.setSeats(train.getSeats()+1);
                 System.out.println("Seats Number now is :"+train.getSeats());
             if(train.getSeats()==3){
+                train.setSeats(0);
                 for(Train train1:Gui1.TrainsList){
                     if(train1.getTrainNum()==train.getTrainNum()){
                     train1.engine.setDist_traveled(train1.engine.getDist_traveled()+Distance);
@@ -221,7 +228,7 @@ public class JourneysTableForm_Client extends javax.swing.JFrame {
                         train1.setNeedMaintenance(true);
                     }
                     Gui1.SaveTrainsToDataBase();
-                    Gui1.seats=0;
+                    
                     break;
                     }
                 }
@@ -230,8 +237,8 @@ public class JourneysTableForm_Client extends javax.swing.JFrame {
             Gui1.SaveTrainsToDataBase();
             
         }
-            this.setVisible(false);
-            Gui1.getStartup().setVisible(true);
+//            this.setVisible(false);                                             // check if you will need them or not
+//            Gui1.getStartup().setVisible(true);
         }
         
     }//GEN-LAST:event_BookingBtnActionPerformed

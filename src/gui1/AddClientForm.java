@@ -154,7 +154,11 @@ public class AddClientForm extends javax.swing.JFrame {
     }//GEN-LAST:event_NameInputActionPerformed
 
     private void ApplybtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ApplybtnActionPerformed
-         setName();
+        if(NameInput.getText().equals("")||AgeInput.getText().equals("")||AdressInput.getText().equals("")||String.valueOf(PasswordInput.getPassword()).equals("")){
+            JOptionPane.showMessageDialog(this,"Please Enter all your data");
+        }
+        else{
+        setName();
        setAge();
        setAdress();
        setPassword();
@@ -166,7 +170,7 @@ public class AddClientForm extends javax.swing.JFrame {
         Gui1.getStartup().setVisible(true);}
        else{
        JOptionPane.showMessageDialog(this, "Age must be numeric");
-       }
+       }}
        
 
     }//GEN-LAST:event_ApplybtnActionPerformed

@@ -22,6 +22,7 @@ public class Gui1 {
     private static GoldenClientInfo GI;
     private static AdminLogin AL;
 public  static ArrayList<Client>ClientsList=new ArrayList<>();
+public static ArrayList<Golden_client>golden_clientsList=new ArrayList<>();
 public static ArrayList<Journey>journeysList=new ArrayList<>();
 public static ArrayList<Train>TrainsList=new ArrayList<>();
    
@@ -45,6 +46,16 @@ public static void SaveTrainsToDataBase(){
             fs.close();
         } catch (IOException e) {
                         System.out.println("Failed to save data of the train");     
+        }
+}
+public static void SaveGoldenClientsToDataBase(){
+    try (FileOutputStream fs = new FileOutputStream("GoldenClients.ser");
+             ObjectOutputStream os = new ObjectOutputStream(fs)) {
+            os.writeObject(Gui1.golden_clientsList);
+            os.close();
+            fs.close();
+        } catch (IOException e) {
+             System.out.println("Error in saving golden clients data base");                 
         }
 }
 
@@ -118,6 +129,20 @@ c1=new CurrentClientForm();
                 catch(IOException | ClassNotFoundException e){
                     e.printStackTrace();
                 }
+                
+                
+                try(FileInputStream fs1= new FileInputStream("GoldenClients.ser");
+                    ObjectInputStream os1=new ObjectInputStream(fs1)){
+                    golden_clientsList =(ArrayList<Golden_client>)os1.readObject();
+                    fs1.close();
+                    os1.close();
+                    System.out.println(golden_clientsList);
+                }
+                catch(IOException | ClassNotFoundException e){
+                    e.printStackTrace();
+                }
+                
+                
                 
                 try(FileInputStream fs=new FileInputStream("Trains.ser");
                         ObjectInputStream os =new ObjectInputStream(fs)){

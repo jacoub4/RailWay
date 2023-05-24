@@ -15,7 +15,6 @@ private String adress;
 private int  Ntravels=0;
 private double TraveledDistance=0;
 
-
 Client(){
 
 }
@@ -31,6 +30,10 @@ TraveledDistance=distance;
 this.password=password;
 
 }
+public boolean isGolden(){
+    return false;
+}
+
 
     public String getPassword() {
         return password;

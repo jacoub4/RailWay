@@ -31,6 +31,7 @@ public class GoldenClientInfo extends javax.swing.JFrame {
         savebuttom = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel1.setText("Congratulation");
@@ -133,6 +134,7 @@ public class GoldenClientInfo extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtbirthActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtbirthActionPerformed
@@ -144,13 +146,17 @@ public class GoldenClientInfo extends javax.swing.JFrame {
     }//GEN-LAST:event_compoActionPerformed
 
     private void savebuttomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_savebuttomActionPerformed
+           if(txtbirth.getText().equals("")){
+               JOptionPane.showMessageDialog(this, "please enter your Birthdate");
+           }
+           else{
             CurrentClient.setBirthDate(txtbirth.getText());
             CurrentClient.setFavStation(compo.getSelectedItem().toString());
             JOptionPane.showMessageDialog(this,"Congratulation");
-            Gui1.SaveClientsToDataBase();
-            System.out.println("New Clients :"+Gui1.ClientsList);
+            Gui1.SaveGoldenClientsToDataBase();
+            System.out.println("New Goldens :"+Gui1.golden_clientsList);
             this.setVisible(false);
-            Gui1.getStartup().setVisible(true);
+            Gui1.getStartup().setVisible(true);}
             
     }//GEN-LAST:event_savebuttomActionPerformed
 

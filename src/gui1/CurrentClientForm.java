@@ -1,7 +1,5 @@
 
 package gui1;
-
-import javafx.scene.AccessibleAttribute;
 import javax.swing.JOptionPane;
 
 
@@ -9,6 +7,34 @@ public class CurrentClientForm extends javax.swing.JFrame {
     
     public CurrentClientForm() {
         initComponents();
+    }
+    
+    public boolean CheckInfo(){
+        for(int i=0;i<Gui1.ClientsList.size();i++)
+        {
+            if(NameInput.getText().equals(Gui1.ClientsList.get(i).getName())&& (String.valueOf(PasswordInput.getPassword())).equals(Gui1.ClientsList.get(i).getPassword()))
+            {   
+                Gui1.setClientJounrForm();
+                this.setVisible(false);
+               Gui1.getClientJournForm().setCurrentClient(Gui1.ClientsList.get(i));
+               Gui1.getClientJournForm().setVisible(true);
+               return true;
+               
+            }   
+                
+        }
+        for(int i=0;i<Gui1.golden_clientsList.size();i++){
+            if(NameInput.getText().equals(Gui1.golden_clientsList.get(i).getName())&&(String.valueOf(PasswordInput.getPassword())).equals(Gui1.golden_clientsList.get(i).getPassword())){
+               Gui1.setClientJounrForm();
+                this.setVisible(false);
+               Gui1.getClientJournForm().setCurrentClient(Gui1.golden_clientsList.get(i));
+               Gui1.getClientJournForm().setVisible(true);
+               return true; 
+            
+            }
+        
+        }
+        return false;
     }
 
   
@@ -100,20 +126,9 @@ public class CurrentClientForm extends javax.swing.JFrame {
     }//GEN-LAST:event_NameInputActionPerformed
 
     private void ApplyBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ApplyBtnActionPerformed
-        for(int i=0;i<Gui1.ClientsList.size();i++)
-        {
-            if(NameInput.getText().equals(Gui1.ClientsList.get(i).getName()) && (String.valueOf(PasswordInput.getPassword())).equals(Gui1.ClientsList.get(i).getPassword()))
-            {
-                Gui1.setClientJounrForm();
-                this.setVisible(false);
-               Gui1.getClientJournForm().setCurrentClient(Gui1.ClientsList.get(i));
-               Gui1.getClientJournForm().setVisible(true);
-            }
-            else
-                JOptionPane.showMessageDialog(this, "Make sure To Enter your data correctly");
-                
-                
-        }
+        if(!CheckInfo()){
+       JOptionPane.showMessageDialog(this, "Make sure To Enter your data correctly");}
+         
 
         
             
