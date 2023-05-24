@@ -195,6 +195,8 @@ public class JourneysTableForm_Client extends javax.swing.JFrame {
             getTicketDetials();
             getTrainDetails();
             //show Ticket with details Screen
+            Gui1.SaveClientsToDataBase();
+            Gui1.SaveTrainsToDataBase();
             JOptionPane.showMessageDialog(this,"Ticket Info :\nDate: "+String.valueOf(tm.getValueAt(JourneyTable.getSelectedRow(),0))+"\n"+ticket.toString()+"\n"+train.getService().toString());
             //Check if he is now a golden client or not
             if(CurrentClient.getNtravels()>50|| CurrentClient.getTraveledDistance()>10000){
@@ -204,12 +206,10 @@ public class JourneysTableForm_Client extends javax.swing.JFrame {
                 Gui1.getGoldenClientInfo().setCurrentClient((Golden_client)CurrentClient);
             }
             else{
-            this.setVisible(false);
-            Gui1.getStartup().setVisible(true);
-            }
             System.out.println(Gui1.ClientsList);
-            
+                System.out.println("I should see you");
            train.setSeats(train.getSeats()+1);
+                System.out.println("Seats Number now is :"+train.getSeats());
             if(train.getSeats()==3){
                 for(Train train1:Gui1.TrainsList){
                     if(train1.getTrainNum()==train.getTrainNum()){
@@ -227,7 +227,11 @@ public class JourneysTableForm_Client extends javax.swing.JFrame {
                 }
                 
             }
+            Gui1.SaveTrainsToDataBase();
             
+        }
+            this.setVisible(false);
+            Gui1.getStartup().setVisible(true);
         }
         
     }//GEN-LAST:event_BookingBtnActionPerformed
