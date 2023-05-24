@@ -111,11 +111,4 @@ public void buyTicket(Ticket ticket){                                           
     @Override
     public String toString() {
         return "Client{" + "ID=" + ID + ", age=" + age +", name=" + name + ", Password: "+password+ ", pensioner=" + pensioner + ", adress=" + adress + ", Ntravels=" + Ntravels + ", TraveledDistance=" + TraveledDistance + '}';
-    }
-
-
-
-
-
-}
-
+    }}
