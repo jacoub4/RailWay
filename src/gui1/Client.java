@@ -4,7 +4,7 @@ package gui1;
 import java.io.Serializable;
 
 
-public  class Client implements Serializable{
+public  class Client extends Person implements Serializable{
     private static final long serialVersionUID = 1L;
 private String password;
 private int ID;
@@ -52,34 +52,42 @@ public boolean isGolden(){
         this.ID = ID;
     }
 
+    @Override
     public int getAge() {
         return age;
     }
 
+    @Override
     public void setAge(int age) {
         this.age = age;
     }
 
+    @Override
     public String getName() {
         return name;
     }
 
+    @Override
     public void setName(String name) {
         this.name = name;
     }
 
+    @Override
     public boolean isPensioner() {
         return pensioner;
     }
 
+    @Override
     public void setPensioner(boolean pensioner) {
         this.pensioner = pensioner;
     }
 
+    @Override
     public String getAdress() {
         return adress;
     }
 
+    @Override
     public void setAdress(String adress) {
         this.adress = adress;
     }
@@ -88,6 +96,7 @@ public boolean isGolden(){
         return Ntravels;
     }
 
+    @Override
     public void setNtravels(int Ntravels) {
         this.Ntravels = Ntravels;
     }
