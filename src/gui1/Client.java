@@ -4,7 +4,7 @@ package gui1;
 import java.io.Serializable;
 
 
-public class Client implements Serializable{
+public  class Client implements Serializable{
     private static final long serialVersionUID = 1L;
 private String password;
 private int ID;
@@ -99,13 +99,8 @@ public boolean isGolden(){
     public void setTraveledDistance(double TraveledDistance) {
         this.TraveledDistance = TraveledDistance;
     }
-public void TakeTrain(Train tr1){                                                   // not Done yet !!
-//tr1.performJourney();
-}
-public void buyTicket(Ticket ticket){                                                   // not done yet!! (don't forget to change String to Ticket after making the class)
-
-}
-    
+//public abstract void TakeTrain(Train tr1);
+//public abstract void buyTicket(Ticket ticket);
     
     
     @Override

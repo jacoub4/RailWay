@@ -1,7 +1,7 @@
 
 package gui1;
 
-import java.util.Date;
+
 
 public class Golden_client extends Client{
     private String BirthDate;
