@@ -13,8 +13,28 @@ public class Train implements Serializable{
     Engine engine;
     private boolean NeedOil;
     private boolean NeedMaintenance;
+    private int Seats;
     Train(){}
-    Train(int num,String type,double speed,Service S1,Engine g){}
+
+    public Train(int TrainNum, String TrainType, double speed, Service service, Engine engine, boolean NeedOil, boolean NeedMaintenance, int Seats) {
+        this.TrainNum = TrainNum;
+        this.TrainType = TrainType;
+        this.speed = speed;
+        this.service = service;
+        this.engine = engine;
+        this.NeedOil = NeedOil;
+        this.NeedMaintenance = NeedMaintenance;
+        this.Seats = Seats;
+    }
+
+    public int getSeats() {
+        return Seats;
+    }
+
+    public void setSeats(int Seats) {
+        this.Seats = Seats;
+    }
+    
 
     public int getTrainNum() {
         return TrainNum;

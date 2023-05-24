@@ -55,6 +55,8 @@ public class JourneysTableForm_Client extends javax.swing.JFrame {
  catch(ClassNotFoundException |IOException e){
      System.out.println("Error in JourneyTable for clients");
 }   
+ 
+ 
     }
     
     public Journey getJourneyDetails(){
@@ -84,6 +86,7 @@ public class JourneysTableForm_Client extends javax.swing.JFrame {
         ticket.setFinalPrice(ticket.getPrice()*ticket.getDiscount());
     return ticket;
     }
+    
     public void getTrainDetails(){
         for(Train t:Gui1.TrainsList){
             if(t.getTrainNum()==Integer.parseInt(tm.getValueAt(JourneyTable.getSelectedRow(), 3).toString())){
@@ -173,20 +176,27 @@ public class JourneysTableForm_Client extends javax.swing.JFrame {
     }//GEN-LAST:event_JourneyTableMouseClicked
 
     private void BookingBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BookingBtnActionPerformed
+        //check if he just selected one journey
         if(JourneyTable.getSelectedRowCount()==0){
             JOptionPane.showMessageDialog(this,"Please select a Journey to book");
         }
         else if(JourneyTable.getSelectedRowCount()>1){
             JOptionPane.showMessageDialog(this, "Please select Just one Journey");
         }
+        //if just one journey is selected
         else{
+            //get the value of Distance from the table 
             double Distance=Double.parseDouble(tm.getValueAt(JourneyTable.getSelectedRow(),4).toString().replace("Km", ""));
             System.out.println(getJourneyDetails().toString());
+           //renewing data of clien
             CurrentClient.setNtravels(CurrentClient.getNtravels()+1);
             CurrentClient.setTraveledDistance(CurrentClient.getTraveledDistance()+Distance);
+            //assign details of ticket and train
             getTicketDetials();
             getTrainDetails();
+            //show Ticket with details Screen
             JOptionPane.showMessageDialog(this,"Ticket Info :\nDate: "+String.valueOf(tm.getValueAt(JourneyTable.getSelectedRow(),0))+"\n"+ticket.toString()+"\n"+train.getService().toString());
+            //Check if he is now a golden client or not
             if(CurrentClient.getNtravels()>50|| CurrentClient.getTraveledDistance()>10000){
                 CurrentClient=(Golden_client)CurrentClient;
                 this.setVisible(false);
@@ -197,12 +207,12 @@ public class JourneysTableForm_Client extends javax.swing.JFrame {
             this.setVisible(false);
             Gui1.getStartup().setVisible(true);
             }
-            Gui1.SaveClientsToDataBase();
+            System.out.println(Gui1.ClientsList);
             
-            Gui1.seats++;
-            if(Gui1.seats==3){
+           train.setSeats(train.getSeats()+1);
+            if(train.getSeats()==3){
                 for(Train train1:Gui1.TrainsList){
-                    if(train1.getTrainNum()==Double.parseDouble(String.valueOf(tm.getValueAt(JourneyTable.getSelectedRow(),3)))){
+                    if(train1.getTrainNum()==train.getTrainNum()){
                     train1.engine.setDist_traveled(train1.engine.getDist_traveled()+Distance);
                     if(train1.engine.getDist_traveled()>20000){
                         train1.setNeedOil(true);

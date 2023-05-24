@@ -189,12 +189,12 @@ public class AddTrainForm extends javax.swing.JFrame {
     }//GEN-LAST:event_ScreenCheckActionPerformed
 
     private void ApplyBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ApplyBtnActionPerformed
-        //put servide attributes 
+        //put servise attributes 
         train.setService(getServiceDetails());
         //put Engine Details
         engine.setType(String.valueOf(EngineComboBox.getSelectedItem()));
         engine.setID(Gui1.TrainsList.size()+1);
-        //
+        //assign the engine to the train
         train.setEngine(engine);
         //setting the Type of the train
         if(WifiCheck.isSelected()&&ScreenCheck.isSelected()){
@@ -204,7 +204,7 @@ public class AddTrainForm extends javax.swing.JFrame {
             train.setTrainType("Medium");
         }
         else{
-            train.setTrainType("Normal");
+            train.setTrainType("Economy");
         }
         //set train number
         train.setTrainNum(Gui1.TrainsList.size()+1);

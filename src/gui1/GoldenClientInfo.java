@@ -147,6 +147,8 @@ public class GoldenClientInfo extends javax.swing.JFrame {
             CurrentClient.setBirthDate(txtbirth.getText());
             CurrentClient.setFavStation(compo.getSelectedItem().toString());
             JOptionPane.showMessageDialog(this,"Congratulation");
+            Gui1.SaveClientsToDataBase();
+            System.out.println("New Clients :"+Gui1.ClientsList);
             this.setVisible(false);
             Gui1.getStartup().setVisible(true);
             
